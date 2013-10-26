@@ -4,7 +4,7 @@
   <title><![CDATA[Sanween's Blog]]></title>
   <link href="http://yinsanwen.github.io/atom.xml" rel="self"/>
   <link href="http://yinsanwen.github.io/"/>
-  <updated>2013-10-26T16:55:24+08:00</updated>
+  <updated>2013-10-26T17:15:45+08:00</updated>
   <id>http://yinsanwen.github.io/</id>
   <author>
     <name><![CDATA[sanween]]></name>
@@ -12,6 +12,76 @@
   </author>
   <generator uri="http://octopress.org/">Octopress</generator>
 
+  
+  <entry>
+    <title type="html"><![CDATA[java_method_default_param]]></title>
+    <link href="http://yinsanwen.github.io/blog/2013/10/26/java-method-default-param/"/>
+    <updated>2013-10-26T17:00:00+08:00</updated>
+    <id>http://yinsanwen.github.io/blog/2013/10/26/java-method-default-param</id>
+    <content type="html"><![CDATA[<h3>Java不支持为方法设置默认的参数</h3>
+
+<p>例如，我想定义一个获取用户最近一段时间内用户行为的方法，定义如下：</p>
+
+<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+<span class='line-number'>5</span>
+<span class='line-number'>6</span>
+<span class='line-number'>7</span>
+<span class='line-number'>8</span>
+</pre></td><td class='code'><pre><code class='java'><span class='line'><span class="cm">/**</span>
+</span><span class='line'><span class="cm"> * 获取所有用户最近一段时间内对itemID的浏览记录</span>
+</span><span class='line'><span class="cm"> * @param itemID </span>
+</span><span class='line'><span class="cm"> * @param limit 限定值</span>
+</span><span class='line'><span class="cm"> * @param unit   限定单位为&quot;MONTH&quot;,&quot;DAY&quot;,默认为MONTH</span>
+</span><span class='line'><span class="cm"> * @return</span>
+</span><span class='line'><span class="cm"> */</span>
+</span><span class='line'><span class="kt">long</span><span class="o">[]</span> <span class="nf">browseHistory</span><span class="o">(</span><span class="kt">long</span> <span class="n">itemID</span><span class="o">,</span> <span class="kt">int</span> <span class="n">limit</span><span class="o">,</span> <span class="n">String</span> <span class="n">unit</span> <span class="o">=</span> <span class="err">&#39;</span><span class="n">MONTH</span><span class="err">&#39;</span><span class="o">);</span>
+</span></code></pre></td></tr></table></div></figure>
+
+
+<p>Eclipse会报错，不支持为unit设置默认值“MONTH”。
+可以使用方法的重载机制。如下：</p>
+
+<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+<span class='line-number'>5</span>
+<span class='line-number'>6</span>
+<span class='line-number'>7</span>
+<span class='line-number'>8</span>
+<span class='line-number'>9</span>
+<span class='line-number'>10</span>
+<span class='line-number'>11</span>
+<span class='line-number'>12</span>
+<span class='line-number'>13</span>
+<span class='line-number'>14</span>
+<span class='line-number'>15</span>
+<span class='line-number'>16</span>
+<span class='line-number'>17</span>
+</pre></td><td class='code'><pre><code class='java'><span class='line'><span class="cm">/**</span>
+</span><span class='line'><span class="cm"> * 方法的重载，定义一个只有两个参数的browseHistory方法，再设置默认值调用目标方法。</span>
+</span><span class='line'><span class="cm"> * @param itemID</span>
+</span><span class='line'><span class="cm"> * @return</span>
+</span><span class='line'><span class="cm"> */</span>
+</span><span class='line'><span class="kt">long</span><span class="o">[]</span> <span class="nf">browseHistory</span><span class="o">(</span><span class="kt">long</span> <span class="n">itemID</span><span class="o">,</span> <span class="kt">int</span> <span class="n">limit</span><span class="o">){</span>
+</span><span class='line'>  <span class="k">return</span> <span class="nf">browseHistorty</span><span class="o">(</span><span class="n">itemID</span><span class="o">,</span> <span class="n">limit</span><span class="o">,</span> <span class="err">&#39;</span><span class="n">MONTH</span><span class="err">&#39;</span><span class="o">);</span>
+</span><span class='line'><span class="o">}</span>
+</span><span class='line'>
+</span><span class='line'><span class="cm">/**</span>
+</span><span class='line'><span class="cm"> * 获取所有用户最近一段时间内对itemID的浏览记录</span>
+</span><span class='line'><span class="cm"> * @param itemID </span>
+</span><span class='line'><span class="cm"> * @param limit 限定值</span>
+</span><span class='line'><span class="cm"> * @param unit   限定单位为&quot;MONTH&quot;,&quot;DAY&quot;,默认为MONTH</span>
+</span><span class='line'><span class="cm"> * @return</span>
+</span><span class='line'><span class="cm"> */</span>
+</span><span class='line'><span class="kt">long</span><span class="o">[]</span> <span class="nf">browseHistory</span><span class="o">(</span><span class="kt">long</span> <span class="n">itemID</span><span class="o">,</span> <span class="kt">int</span> <span class="n">limit</span><span class="o">,</span> <span class="n">String</span> <span class="n">unit</span><span class="o">);</span>
+</span></code></pre></td></tr></table></div></figure>
+
+]]></content>
+  </entry>
   
   <entry>
     <title type="html"><![CDATA[new start]]></title>
