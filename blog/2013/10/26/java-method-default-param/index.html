@@ -26,14 +26,14 @@
   <meta name="viewport" content="width=device-width, initial-scale=1">
 
   
-  <link rel="canonical" href="http://yinsanwen.github.io/blog/2013/10/26/java-method-default-param">
+  <link rel="canonical" href="http://yinsanwen.github.io/blog/2013/10/26/java-method-default-param/">
   <link href="/favicon.png" rel="icon">
   <link href="/stylesheets/screen.css" media="screen, projection" rel="stylesheet" type="text/css">
-  <link href="/atom.xml" rel="alternate" title="Sanween's Blog" type="application/atom+xml">
   <script src="/javascripts/modernizr-2.0.js"></script>
-  <script src="//ajax.googleapis.com/ajax/libs/jquery/1.9.1/jquery.min.js"></script>
-  <script>!window.jQuery && document.write(unescape('%3Cscript src="./javascripts/lib/jquery.min.js"%3E%3C/script%3E'))</script>
+  <script src="/javascripts/ender.js"></script>
   <script src="/javascripts/octopress.js" type="text/javascript"></script>
+  <link href="/atom.xml" rel="alternate" title="Sanween's Blog" type="application/atom+xml">
+  <link href='http://fonts.googleapis.com/css?family=Lato:400,700,400italic,700italic' rel='stylesheet' type='text/css'>
   <!--Fonts from Google"s Web font directory at http://google.com/webfonts -->
 <link href="http://fonts.googleapis.com/css?family=PT+Serif:regular,italic,bold,bolditalic" rel="stylesheet" type="text/css">
 <link href="http://fonts.googleapis.com/css?family=PT+Sans:regular,italic,bold,bolditalic" rel="stylesheet" type="text/css">
@@ -44,10 +44,17 @@
 
 <body   >
   <header role="banner"><hgroup>
+  <div id="logo">
+  	<div id="logoLeft">{</div>
+  	<div id="logoText">mob</div>
+  	<div id="logoRight">}</div>
+  	<div class="clear"></div>
+  </div>
   <h1><a href="/">Sanween's Blog</a></h1>
   
     <h2>坚持，沉淀，学习，记录</h2>
   
+  <div class="clear"></div>
 </hgroup>
 
 </header>
@@ -76,7 +83,9 @@
   
   <header>
     
-      <h1 class="entry-title">Java中默认参数的实现——使用方法的重载</h1>
+      
+        <h1 class="entry-title">Java中默认参数的实现——使用方法的重载</h1>
+      
     
     
       <p class="meta">
@@ -191,7 +200,7 @@
     
       <div class="sharing">
   
-  <a href="//twitter.com/share" class="twitter-share-button" data-url="http://yinsanwen.github.io/blog/2013/10/26/java-method-default-param/" data-via="" data-counturl="http://yinsanwen.github.io/blog/2013/10/26/java-method-default-param/" >Tweet</a>
+  <a href="http://twitter.com/share" class="twitter-share-button" data-url="http://yinsanwen.github.io/blog/2013/10/26/java-method-default-param/" data-via="" data-counturl="http://yinsanwen.github.io/blog/2013/10/26/java-method-default-param/" >Tweet</a>
   
   
   
@@ -200,7 +209,7 @@
     
     <p class="meta">
       
-        <a class="basic-alignment left" href="/blog/2013/10/14/new-start/" title="Previous Post: new start">&laquo; new start</a>
+        <a class="basic-alignment left articlenav" href="/blog/2013/10/14/new-start/" title="Previous Post: new start">&laquo; new start</a>
       
       
     </p>
@@ -255,7 +264,7 @@
       var twitterWidgets = document.createElement('script');
       twitterWidgets.type = 'text/javascript';
       twitterWidgets.async = true;
-      twitterWidgets.src = '//platform.twitter.com/widgets.js';
+      twitterWidgets.src = 'http://platform.twitter.com/widgets.js';
       document.getElementsByTagName('head')[0].appendChild(twitterWidgets);
     })();
   </script>
