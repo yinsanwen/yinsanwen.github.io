@@ -4,7 +4,7 @@
   <title><![CDATA[Sanween's Blog]]></title>
   <link href="http://yinsanwen.github.io/atom.xml" rel="self"/>
   <link href="http://yinsanwen.github.io/"/>
-  <updated>2013-10-26T17:15:45+08:00</updated>
+  <updated>2013-10-26T17:20:15+08:00</updated>
   <id>http://yinsanwen.github.io/</id>
   <author>
     <name><![CDATA[sanween]]></name>
@@ -14,7 +14,7 @@
 
   
   <entry>
-    <title type="html"><![CDATA[java_method_default_param]]></title>
+    <title type="html"><![CDATA[Java中默认参数的实现——使用方法的重载]]></title>
     <link href="http://yinsanwen.github.io/blog/2013/10/26/java-method-default-param/"/>
     <updated>2013-10-26T17:00:00+08:00</updated>
     <id>http://yinsanwen.github.io/blog/2013/10/26/java-method-default-param</id>
