@@ -4,7 +4,7 @@
   <title><![CDATA[Sanween's Blog]]></title>
   <link href="http://yinsanwen.github.io/atom.xml" rel="self"/>
   <link href="http://yinsanwen.github.io/"/>
-  <updated>2013-11-10T11:12:42+08:00</updated>
+  <updated>2013-11-10T11:16:35+08:00</updated>
   <id>http://yinsanwen.github.io/</id>
   <author>
     <name><![CDATA[sanween]]></name>
@@ -12,22 +12,6 @@
   </author>
   <generator uri="http://octopress.org/">Octopress</generator>
 
-  
-  <entry>
-    <title type="html"><![CDATA[test]]></title>
-    <link href="http://yinsanwen.github.io/blog/2013/11/10/test/"/>
-    <updated>2013-11-10T10:38:00+08:00</updated>
-    <id>http://yinsanwen.github.io/blog/2013/11/10/test</id>
-    <content type="html"><![CDATA[<h1>test codeblock</h1>
-
-<figure class='code'><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
-</pre></td><td class='code'><pre><code class='java'><span class='line'><span class="n">System</span><span class="o">.</span><span class="na">out</span><span class="o">.</span><span class="na">println</span><span class="o">(</span><span class="s">&quot;This is a java code block&quot;</span><span class="o">);</span>
-</span></code></pre></td></tr></table></div></figure>
-
-
-
-]]></content>
-  </entry>
   
   <entry>
     <title type="html"><![CDATA[pl/sql conllections]]></title>
