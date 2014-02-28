@@ -1,4 +1,0 @@
-User-agent: *
-Disallow: 
-
-Sitemap: http://yinsanwen.github.io/sitemap.xml 
