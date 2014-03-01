@@ -387,7 +387,7 @@ Advanced Rest Client 界面如下:  </p>
 <p>可以看到返回 200状态<br />
 在返回的结果中，有user 1的信息。  </p>
 <p><strong>注意：</strong> 
-我们声明readUser()的时候，返回值是User对象。<br />
+我们声明readUser()的时候，返回值是User对象，而为什么这里response返回了josn格式的用户信息呢？  <br />
 因为我们使用了JsonProvider。</p>
 <div class="highlight"><pre><span class="c">&lt;!-- 创建一个jsonProvider给jaxrs:server元素使用 --&gt;</span>
 <span class="nt">&lt;bean</span> <span class="na">id=</span><span class="s">&quot;jsonProvider&quot;</span> <span class="na">class=</span><span class="s">&quot;org.codehaus.jackson.jaxrs.JacksonJsonProvider&quot;</span> <span class="nt">/&gt;</span>
@@ -433,8 +433,8 @@ Advanced Rest Client 界面如下:  </p>
                 <li class="list-group-item"><a href="/"><h4><i class="fa fa-tags fa-lg"></i><span class="icon-label">Tags</span></h4></a>
                     <ul class="list-group " id="tags">
                         <li class="list-group-item tag-4">
-                            <a href="/tag/publishing.html">
-                                publishing
+                            <a href="/tag/jax-rs.html">
+                                jax-rs
                             </a>
                         </li>
                         <li class="list-group-item tag-4">
@@ -443,18 +443,18 @@ Advanced Rest Client 界面如下:  </p>
                             </a>
                         </li>
                         <li class="list-group-item tag-4">
-                            <a href="/tag/pelican.html">
-                                pelican
-                            </a>
-                        </li>
-                        <li class="list-group-item tag-4">
-                            <a href="/tag/jax-rs.html">
-                                jax-rs
+                            <a href="/tag/publishing.html">
+                                publishing
                             </a>
                         </li>
                         <li class="list-group-item tag-4">
                             <a href="/tag/rest.html">
                                 rest
+                            </a>
+                        </li>
+                        <li class="list-group-item tag-4">
+                            <a href="/tag/pelican.html">
+                                pelican
                             </a>
                         </li>
                     </ul>
