@@ -3,7 +3,7 @@
       xmlns:og="http://ogp.me/ns#"
       xmlns:fb="https://www.facebook.com/2008/fbml">
 <head>
-    <title>Python - sanwen's blog</title>
+    <title>Spring - sanwen's blog</title>
     <!-- Using the latest rendering mode for IE -->
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta charset="utf-8">
@@ -48,7 +48,7 @@ sanwen's blog            </a>
                         <li >
                             <a href="/category/java-web.html">Java web</a>
                         </li>
-                        <li class="active">
+                        <li >
                             <a href="/category/python.html">Python</a>
                         </li>
             </ul>
@@ -65,9 +65,15 @@ sanwen's blog            </a>
         <div class="col-sm-9">
 
             <article>
-                <h2><a href="/my-super-post.html">My super title</a></h2>
-                <div class="summary"><p>Short version for index and feeds</p>
-                    <a class="btn btn-default btn-xs" href="/my-super-post.html">more ...</a>
+                <h2><a href="/send-email-using-spring.html">使用Spring的Mail组件发送邮件</a></h2>
+                <div class="summary"><p>很多场合我们都需要在我们的系统中使用发送邮件的功能，虽然JAVA提供了<code>JavaMail</code>可供使用，但是Spring也在其框架中提供了更高层的邮件组件。在Spring中发送邮件主要使用<strong><code>org.springframework.mail.javamail.JavaMailSenderImpl</code></strong>这个类。使用JavaMailSenderImpl，需要<code>org.springframework.context.support-3.0.5.RELEASE.jar</code>这个jar包。</p>
+<p>首先看一看这个类的API说明</p>
+<blockquote>
+<p><em>public class JavaMailSenderImpl </em>
+    <em>extends Object</em>
+    <em>implements JavaMailSender</em></p>
+<p>Production implementation of the JavaMailSender interface, supporting both JavaMail       MimeMessages and Spring SimpleMailMessages. Can also be used as a ...</p></blockquote>
+                    <a class="btn btn-default btn-xs" href="/send-email-using-spring.html">more ...</a>
                 </div>
             </article>
             <hr/>
@@ -170,7 +176,7 @@ sanwen's blog            </a>
    <div class="container">
       <hr>
       <div class="row">
-         <div class="col-xs-10">&copy; 2010 sanwen
+         <div class="col-xs-10">&copy; 2014 sanwen
             &middot; Powered by <a href="https://github.com/DandyDev/pelican-bootstrap3" target="_blank">pelican-bootstrap3</a>,
             <a href="http://docs.getpelican.com/" target="_blank">Pelican</a>,
             <a href="http://getbootstrap.com" target="_blank">Bootstrap</a>         </div>
