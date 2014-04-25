@@ -1,0 +1,9 @@
+---
+layout: post
+title: "new start"
+date: 2013-10-14 22:25
+comments: true
+categories: 
+---
+This is my new blog!
+Hello to see you all.
