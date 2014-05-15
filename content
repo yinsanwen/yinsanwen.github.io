@@ -1,0 +1,33 @@
+
+前言：虽然在Ubuntu下使用包管理器apt-get在安装tomcat很方便。但是安装路径和配置很不直观，后期维护和修改配置非常蛋疼。不建议使用这种安装方式。我们采取在apache官网上下载压缩包文件进行安装。
+
+---
+###安装tomcat7
+1. 首先从官网下载tar.gz的压缩包文件。
+2. 解压缩并移动文件夹到`/opt/tomcat7`。
+``` bash
+~$ wegt -0 http://mirror.bit.edu.cn/apache/tomcat/tomcat-7/v7.0.53/bin/apache-tomcat-7.0.53.tar.gz
+~$ tar zxvf apache-tomcat-7.0.53.tar.gz
+~$ mv apache-tomcat-7.0.53.tar.gz /opt/tomcat7
+```
+到此，我们就已经可以使用tomcat7了
+
+**启动tomcat7** : ```/opt/tomcat7$ bin/startup.sh```
+**停止tomcat7** : ```/opt/tomcat7$ bin/shutdown.sh```
+
+---
+###配置tomcat7为系统服务
+经过上面的设置，虽然tomcat7已经可以使用，但是启动的时候需要进入tomcat7的目录，比较繁琐。
+
+我们可以tomcat7设置为系统服务。使用的就是bin目录下的`catalina.sh`文件。
+
+比较简单的方式是在Ubuntu的`/etc/init.d/`文件夹下创建一个catalina.sh文件的软链接。
+```bash
+/opt/tomcat7/bin$ cd /etc/init.d/
+/etc/init.d$ sudo ln -s /opt/tomcat7/bin/catalina.sh tomcat7
+```
+然后，我们可以使用系统服务命令来启动或停止tomcat7
+```bash
+service tomcat7 start #启动tomcat7
+service tomcat7 stop  #停止tomcat7
+```
