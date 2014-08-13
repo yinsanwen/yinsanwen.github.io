@@ -66,7 +66,6 @@
 <li><a href="#extract_toc">extract_toc</a></li>
 </ul>
 </li>
-<li><a href="#heading-1">Heading 1</a></li>
 </ul>
 </div>
         </nav>
@@ -76,38 +75,33 @@
             
 <h2 id="pelican">安装Pelican插件</h2>
 <p>下载Pelican插件，放在pelican-plugins目录中。</p>
-<p><code>bash
-git clone https://github.com/getpelican/pelican-plugins</code></p>
+<div class="highlight"><pre>git clone https://github.com/getpelican/pelican-plugins
+</pre></div>
 <p>配置pelicanconf.py文件</p>
-<p><code>bash
-PLUGIN_PATHS = ['path/to/pelican-plugins']  # 插件的目录  
-PLUGINS = ['assets', 'sitemap', 'gravatar'] # 启用的插件列表</code></p>
+<div class="highlight"><pre><span class="nv">PLUGIN_PATHS</span> <span class="o">=</span> <span class="o">[</span><span class="s1">'path/to/pelican-plugins'</span><span class="o">]</span>  <span class="c"># 插件的目录  </span>
+<span class="nv">PLUGINS</span> <span class="o">=</span> <span class="o">[</span><span class="s1">'assets'</span>, <span class="s1">'sitemap'</span>, <span class="s1">'gravatar'</span><span class="o">]</span> <span class="c"># 启用的插件列表</span>
+</pre></div>
+<hr/>
 <h2 id="pelican_1">使用Pelican插件</h2>
 <h3 id="extract_toc">extract_toc</h3>
 <p>extract_toc插件需要BeautifulSoup的支持</p>
-<p><code>bash
-pip install beautifulsoup4</code></p>
+<div class="highlight"><pre>pip install beautifulsoup4
+</pre></div>
 <p>一、针对markdown编写的博客</p>
 <p>首先需要在配置文件里面设置</p>
-<p><code>MD_EXTENSIONS = (['toc'])</code></p>
+<div class="highlight"><pre><span class="n">MD_EXTENSIONS</span> <span class="o">=</span> <span class="p">([</span><span class="s">'toc'</span><span class="p">])</span>
+</pre></div>
 <p>然后在markdown文件(.md)的开头处添加[TOC]标记。如下所示</p>
-<p>``` bash
-title: My super title
+<div class="highlight"><pre>title: My super title
 date: 4-4-2013
-tags: thats, awesome</p>
-<div class="toc">
-<ul>
-<li><a href="#pelican">安装Pelican插件</a></li>
-<li><a href="#pelican_1">使用Pelican插件</a><ul>
-<li><a href="#extract_toc">extract_toc</a></li>
-</ul>
-</li>
-<li><a href="#heading-1">Heading 1</a></li>
-</ul>
-</div>
-<h1 id="heading-1">Heading 1</h1>
-<p>Lorem ipsum dolor sit amet, consectetuer adipiscing elit. Aenean commodo ligula eget dolor. Aenean massa.</p>
-<p>```</p>
+tags: thats, awesome
+
+<span class="o">[</span>TOC<span class="o">]</span>
+
+<span class="c"># Heading 1 #</span>
+
+Lorem ipsum dolor sit amet, consectetuer adipiscing elit. Aenean commodo ligula eget dolor. Aenean massa.
+</pre></div>
 <section>
 <div class="accordion" id="accordion2">
     <div class="accordion-group">
@@ -155,7 +149,7 @@ tags: thats, awesome</p>
         <div class="span2" style="float:right;font-size:0.9em;">
  
             <h4>Published</h4>
-            <time pubdate="pubdate" datetime="2014-08-13T23:16:37.796976"> 8月 13, 2014</time>
+            <time pubdate="pubdate" datetime="2014-08-14T02:14:18.605133"> 8月 14, 2014</time>
             <h4>Category</h4>
             <a class="category-link" href="/categories.html#Pelican-ref">Pelican</a> 
 
