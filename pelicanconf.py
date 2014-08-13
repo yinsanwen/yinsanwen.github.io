@@ -35,7 +35,7 @@ DEFAULT_PAGINATION = 10
 #RELATIVE_URLS = True
 
 #theme
-#THEME = "/home/sanwen/virtualenvs/pelican/blog/pelican-themes/pelican-elegant-1.3"
+THEME = "pelican-themes/pelican-elegant-1.3" 
 
 #DISQUS评论支持
 #DISQUS_SITENAME = u"sanween"
