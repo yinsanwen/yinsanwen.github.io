@@ -1,66 +1,92 @@
 <?xml version="1.0" encoding="utf-8"?>
-<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom"><channel><title>sanwen的博客</title><link>http://yinsanwen.github.io/</link><description></description><atom:link href="http://yinsanwen.github.io/feeds/sanwen.rss.xml" rel="self"></atom:link><lastBuildDate>Wed, 13 Aug 2014 17:54:36 +0800</lastBuildDate><item><title>Pelican的迁移和快速开始</title><link>http://yinsanwen.github.io/pelicande-qian-yi-he-kuai-su-kai-shi.html</link><description>&lt;h3&gt;1、安装pelican&lt;/h3&gt;
-&lt;p&gt;使用&lt;code&gt;pip&lt;/code&gt;命令快速安装&lt;/p&gt;
-&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span class="n"&gt;sudo&lt;/span&gt; &lt;span class="n"&gt;pip&lt;/span&gt; &lt;span class="n"&gt;install&lt;/span&gt; &lt;span class="n"&gt;pelican&lt;/span&gt;
-&lt;/pre&gt;&lt;/div&gt;
-
-
-&lt;p&gt;如果你计划使用Markdown语法格式，需要安装Markdown库&lt;/p&gt;
-&lt;div class="highlight"&gt;&lt;pre&gt;pip install Markdown
-&lt;/pre&gt;&lt;/div&gt;
-
-
-&lt;hr /&gt;
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom"><channel><title>sanwen的博客</title><link>http://yinsanwen.github.io/</link><description></description><atom:link href="http://yinsanwen.github.io/feeds/sanwen.rss.xml" rel="self"></atom:link><lastBuildDate>Wed, 13 Aug 2014 23:05:00 +0800</lastBuildDate><item><title>Pelican插件用法</title><link>http://yinsanwen.github.io/pelicancha-jian-yong-fa.html</link><description>
+&lt;h2 id="pelican"&gt;安装Pelican插件&lt;/h2&gt;
+&lt;p&gt;下载Pelican插件，放在pelican-plugins目录中。
+&lt;code&gt;bash
+git clone https://github.com/getpelican/pelican-plugins&lt;/code&gt;
+配置pelicanconf.py文件
+```python&lt;/p&gt;
+&lt;h1 id="_1"&gt;插件的目录&lt;/h1&gt;
+&lt;p&gt;PLUGIN_PATHS = ['path/to/pelican-plugins']&lt;/p&gt;
+&lt;h1 id="_2"&gt;启用的插件列表&lt;/h1&gt;
+&lt;p&gt;PLUGINS = ['assets', 'sitemap', 'gravatar']
+```&lt;/p&gt;
+&lt;h2 id="pelican_1"&gt;使用Pelican插件&lt;/h2&gt;
+&lt;h3 id="extract_toc"&gt;extract_toc&lt;/h3&gt;
+&lt;p&gt;extract_toc插件需要BeautifulSoup的支持
+&lt;code&gt;bash
+pip install beautifulsoup4&lt;/code&gt;
+一、针对markdown编写的博客&lt;/p&gt;
+&lt;p&gt;首先需要在配置文件里面设置
+&lt;code&gt;python
+MD_EXTENSIONS = (['toc'])&lt;/code&gt;
+然后在markdown文件(.md)的开头处添加[TOC]标记。如下所示
+```
+title: My super title
+date: 4-4-2013
+tags: thats, awesome&lt;/p&gt;
+&lt;div class="toc"&gt;
+&lt;ul&gt;
+&lt;li&gt;&lt;a href="#pelican"&gt;安装Pelican插件&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href="#_1"&gt;插件的目录&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href="#_2"&gt;启用的插件列表&lt;/a&gt;&lt;ul&gt;
+&lt;li&gt;&lt;a href="#pelican_1"&gt;使用Pelican插件&lt;/a&gt;&lt;ul&gt;
+&lt;li&gt;&lt;a href="#extract_toc"&gt;extract_toc&lt;/a&gt;&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;li&gt;&lt;a href="#heading-1"&gt;Heading 1&lt;/a&gt;&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/div&gt;
+&lt;h1 id="heading-1"&gt;Heading 1&lt;/h1&gt;
+&lt;p&gt;Lorem ipsum dolor sit amet, consectetuer adipiscing elit. Aenean commodo ligula eget dolor. Aenean massa.
+```&lt;/p&gt;</description><dc:creator xmlns:dc="http://purl.org/dc/elements/1.1/">sanwen</dc:creator><pubDate>Wed, 13 Aug 2014 23:05:00 +0800</pubDate><guid>tag:yinsanwen.github.io,2014-08-13:pelicancha-jian-yong-fa.html</guid></item><item><title>Pelican的迁移和快速开始</title><link>http://yinsanwen.github.io/pelicande-qian-yi-he-kuai-su-kai-shi.html</link><description>
+&lt;h3 id="1pelican"&gt;1、安装pelican&lt;/h3&gt;
+&lt;p&gt;使用&lt;code&gt;pip&lt;/code&gt;命令快速安装
+&lt;code&gt;sudo pip install pelican&lt;/code&gt;
+如果你计划使用Markdown语法格式，需要安装Markdown库
+&lt;code&gt;bash
+pip install Markdown&lt;/code&gt;&lt;/p&gt;
+&lt;hr/&gt;
 &lt;p&gt;(可选) 如果你没有安装pip，请先安装pip(推荐)。否则直接到步骤2。&lt;/p&gt;
-&lt;h4&gt;安装pip&lt;/h4&gt;
+&lt;h4 id="pip"&gt;安装pip&lt;/h4&gt;
 &lt;p&gt;pip是一个python软件包管理工具。 &lt;/p&gt;
-&lt;p&gt;1、下载get-pip.py&lt;/p&gt;
-&lt;div class="highlight"&gt;&lt;pre&gt;sudo curl -O https://bootstrap.pypa.io/get-pip.py
-&lt;/pre&gt;&lt;/div&gt;
-
-
-&lt;p&gt;2、安装pip&lt;/p&gt;
-&lt;div class="highlight"&gt;&lt;pre&gt;sudo python get-pip.py
-&lt;/pre&gt;&lt;/div&gt;
-
-
-&lt;hr /&gt;
-&lt;h3&gt;2、迁移之前的Pelican博客&lt;/h3&gt;
+&lt;p&gt;1、下载get-pip.py
+&lt;code&gt;bash
+sudo curl -O https://bootstrap.pypa.io/get-pip.py&lt;/code&gt;
+2、安装pip
+&lt;code&gt;bash
+sudo python get-pip.py&lt;/code&gt;&lt;/p&gt;
+&lt;hr/&gt;
+&lt;h3 id="2pelican"&gt;2、迁移之前的Pelican博客&lt;/h3&gt;
 &lt;p&gt;我之前使用过pelican写过博客，将output目录里面的内容作为github的master分支。其他目录(pelican配置等)作为source分支。托管在github上面。&lt;/p&gt;
-&lt;p&gt;我们首先取回source分支 (参考&lt;a href="http://stackoverflow.com/questions/1911109/clone-a-specific-git-branch"&gt;如何克隆一个单独分支&lt;/a&gt;)&lt;/p&gt;
-&lt;div class="highlight"&gt;&lt;pre&gt;git clone -b &lt;span class="nb"&gt;source&lt;/span&gt; --single-branch  git@github.com:yinsanwen/yinsanwen.github.io.git blog
-&lt;/pre&gt;&lt;/div&gt;
-
-
-&lt;p&gt;这样，我们就恢复了我们之前的pelican。并继续用此更新我们的博客。&lt;/p&gt;
+&lt;p&gt;我们首先取回source分支 (参考&lt;a href="http://stackoverflow.com/questions/1911109/clone-a-specific-git-branch"&gt;如何克隆一个单独分支&lt;/a&gt;)
+&lt;code&gt;bash 
+git clone -b source --single-branch  git@github.com:yinsanwen/yinsanwen.github.io.git blog&lt;/code&gt;
+这样，我们就恢复了我们之前的pelican。并继续用此更新我们的博客。&lt;/p&gt;
 &lt;p&gt;我使用&lt;code&gt;Fabric&lt;/code&gt;自动构建工具来使用我的pelican。见&lt;a href="http://docs.getpelican.com/en/3.4.0/publish.html#fabric"&gt;Fabric用法&lt;/a&gt;。&lt;/p&gt;
-&lt;hr /&gt;
-&lt;h3&gt;3、发布博客&lt;/h3&gt;
+&lt;hr/&gt;
+&lt;h3 id="3"&gt;3、发布博客&lt;/h3&gt;
 &lt;p&gt;我的博客是托管在github的User Pages之上的。将pelican生成的output目录里面的静态网页放到其&lt;code&gt;master&lt;/code&gt;分支上面即可。
 前面说过，pelican的其他目录也是有必要备份的。我将它们放在了source分支上面。&lt;/p&gt;
-&lt;p&gt;可以使用&lt;code&gt;ghp-import&lt;/code&gt;工具方便的将output目录里面的内容推送到github上面。这样我们在本地写博客的时候只需呆在source分支上面即可。而透过ghp-import来进行部署。具体步骤如下：&lt;/p&gt;
-&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span class="nv"&gt;$ &lt;/span&gt;fab build
-&lt;span class="nv"&gt;$ &lt;/span&gt;ghp-import output
-&lt;span class="nv"&gt;$ &lt;/span&gt;git push origin gh-pages:master
-&lt;/pre&gt;&lt;/div&gt;
-
-
-&lt;p&gt;&lt;code&gt;ghp-import output&lt;/code&gt;命令会在工作空间创建一个&lt;code&gt;gh-pages&lt;/code&gt;的分支，并将outout目录里面的内容更新到该分支。&lt;br /&gt;
+&lt;p&gt;可以使用&lt;code&gt;ghp-import&lt;/code&gt;工具方便的将output目录里面的内容推送到github上面。这样我们在本地写博客的时候只需呆在source分支上面即可。而透过ghp-import来进行部署。具体步骤如下：
+&lt;code&gt;bash
+$ fab build
+$ ghp-import output
+$ git push origin gh-pages:master&lt;/code&gt;
+&lt;code&gt;ghp-import output&lt;/code&gt;命令会在工作空间创建一个&lt;code&gt;gh-pages&lt;/code&gt;的分支，并将outout目录里面的内容更新到该分支。&lt;br/&gt;
 &lt;code&gt;git push&lt;/code&gt;命令则将本地gh-pages分支推送到远程master分支。这样就完成了更新。
 (我们无需在远程仓库中备份gh-pages分支)。&lt;/p&gt;
-&lt;p&gt;我们可以新建一个fab命令来一次完成后两个操作。在fabfile.py里面添加:&lt;/p&gt;
-&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span class="k"&gt;def&lt;/span&gt; &lt;span class="nf"&gt;deploy&lt;/span&gt;&lt;span class="p"&gt;():&lt;/span&gt;
-    &lt;span class="n"&gt;local&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="s"&gt;&amp;#39;ghp-import output &amp;amp;&amp;amp; git push origin gh-pages:master&amp;#39;&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;
-&lt;/pre&gt;&lt;/div&gt;
-
-
-&lt;p&gt;这样，通过步骤&lt;/p&gt;
-&lt;div class="highlight"&gt;&lt;pre&gt;fab build
-fab deploy
-&lt;/pre&gt;&lt;/div&gt;
-
-
-&lt;p&gt;就可以快速的更新和发布文章。&lt;/p&gt;</description><dc:creator xmlns:dc="http://purl.org/dc/elements/1.1/">sanwen</dc:creator><pubDate>Wed, 13 Aug 2014 17:54:36 +0800</pubDate><guid>tag:yinsanwen.github.io,2014-08-13:pelicande-qian-yi-he-kuai-su-kai-shi.html</guid></item><item><title>使用Spring的Mail组件发送邮件</title><link>http://yinsanwen.github.io/send-email-using-spring.html</link><description>&lt;p&gt;很多场合我们都需要在我们的系统中使用发送邮件的功能，虽然JAVA提供了&lt;code&gt;JavaMail&lt;/code&gt;可供使用，但是Spring也在其框架中提供了更高层的邮件组件。在Spring中发送邮件主要使用&lt;strong&gt;&lt;code&gt;org.springframework.mail.javamail.JavaMailSenderImpl&lt;/code&gt;&lt;/strong&gt;这个类。使用JavaMailSenderImpl，需要&lt;code&gt;org.springframework.context.support-3.0.5.RELEASE.jar&lt;/code&gt;这个jar包。&lt;/p&gt;
+&lt;p&gt;我们可以新建一个fab命令来一次完成后两个操作。在fabfile.py里面添加:
+&lt;code&gt;python
+def deploy():
+    local('ghp-import output &amp;amp;&amp;amp; git push origin gh-pages:master')&lt;/code&gt;&lt;/p&gt;
+&lt;p&gt;这样，通过步骤
+&lt;code&gt;bash
+fab build
+fab deploy&lt;/code&gt;
+就可以快速的更新和发布文章。&lt;/p&gt;</description><dc:creator xmlns:dc="http://purl.org/dc/elements/1.1/">sanwen</dc:creator><pubDate>Wed, 13 Aug 2014 22:46:52 +0800</pubDate><guid>tag:yinsanwen.github.io,2014-08-13:pelicande-qian-yi-he-kuai-su-kai-shi.html</guid></item><item><title>使用Spring的Mail组件发送邮件</title><link>http://yinsanwen.github.io/send-email-using-spring.html</link><description>&lt;p&gt;很多场合我们都需要在我们的系统中使用发送邮件的功能，虽然JAVA提供了&lt;code&gt;JavaMail&lt;/code&gt;可供使用，但是Spring也在其框架中提供了更高层的邮件组件。在Spring中发送邮件主要使用&lt;strong&gt;&lt;code&gt;org.springframework.mail.javamail.JavaMailSenderImpl&lt;/code&gt;&lt;/strong&gt;这个类。使用JavaMailSenderImpl，需要&lt;code&gt;org.springframework.context.support-3.0.5.RELEASE.jar&lt;/code&gt;这个jar包。&lt;/p&gt;
 &lt;p&gt;首先看一看这个类的API说明&lt;/p&gt;
 &lt;blockquote&gt;
 &lt;p&gt;&lt;em&gt;public class JavaMailSenderImpl &lt;/em&gt;

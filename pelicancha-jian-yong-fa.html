@@ -7,7 +7,7 @@
         <meta name="copyright" content="sanwen" />
 
 <meta name="keywords" content=", Pelican, " />
-        <title>Pelican的迁移和快速开始  · sanwen的博客
+        <title>Pelican插件用法  · sanwen的博客
 </title>
         <link href="http://cdn-images.mailchimp.com/embedcode/slim-081711.css" rel="stylesheet" type="text/css">
         <link href="//netdna.bootstrapcdn.com/twitter-bootstrap/2.3.1/css/bootstrap-combined.min.css" rel="stylesheet">
@@ -51,7 +51,7 @@
 <article>
 <div class="row-fluid">
     <header class="page_header span10 offset2">
-    <h1><a href="http://yinsanwen.github.io/pelicande-qian-yi-he-kuai-su-kai-shi.html"> Pelican的迁移和快速开始  </a></h1>
+    <h1><a href="http://yinsanwen.github.io/pelicancha-jian-yong-fa.html"> Pelican插件用法  </a></h1>
     </header>
 </div>
 
@@ -61,12 +61,16 @@
         <h4>Contents</h4>
         <div class="toc">
 <ul>
-<li><a href="#1pelican">1、安装pelican</a><ul>
-<li><a href="#pip">安装pip</a></li>
+<li><a href="#pelican">安装Pelican插件</a></li>
+<li><a href="#_1">插件的目录</a></li>
+<li><a href="#_2">启用的插件列表</a><ul>
+<li><a href="#pelican_1">使用Pelican插件</a><ul>
+<li><a href="#extract_toc">extract_toc</a></li>
 </ul>
 </li>
-<li><a href="#2pelican">2、迁移之前的Pelican博客</a></li>
-<li><a href="#3">3、发布博客</a></li>
+</ul>
+</li>
+<li><a href="#heading-1">Heading 1</a></li>
 </ul>
 </div>
         </nav>
@@ -74,57 +78,54 @@
     <div class="span8 article-content">
 
             
-<h3 id="1pelican">1、安装pelican</h3>
-<p>使用<code>pip</code>命令快速安装
-<code>sudo pip install pelican</code>
-如果你计划使用Markdown语法格式，需要安装Markdown库
+<h2 id="pelican">安装Pelican插件</h2>
+<p>下载Pelican插件，放在pelican-plugins目录中。
 <code>bash
-pip install Markdown</code></p>
-<hr/>
-<p>(可选) 如果你没有安装pip，请先安装pip(推荐)。否则直接到步骤2。</p>
-<h4 id="pip">安装pip</h4>
-<p>pip是一个python软件包管理工具。 </p>
-<p>1、下载get-pip.py
+git clone https://github.com/getpelican/pelican-plugins</code>
+配置pelicanconf.py文件
+```python</p>
+<h1 id="_1">插件的目录</h1>
+<p>PLUGIN_PATHS = ['path/to/pelican-plugins']</p>
+<h1 id="_2">启用的插件列表</h1>
+<p>PLUGINS = ['assets', 'sitemap', 'gravatar']
+```</p>
+<h2 id="pelican_1">使用Pelican插件</h2>
+<h3 id="extract_toc">extract_toc</h3>
+<p>extract_toc插件需要BeautifulSoup的支持
 <code>bash
-sudo curl -O https://bootstrap.pypa.io/get-pip.py</code>
-2、安装pip
-<code>bash
-sudo python get-pip.py</code></p>
-<hr/>
-<h3 id="2pelican">2、迁移之前的Pelican博客</h3>
-<p>我之前使用过pelican写过博客，将output目录里面的内容作为github的master分支。其他目录(pelican配置等)作为source分支。托管在github上面。</p>
-<p>我们首先取回source分支 (参考<a href="http://stackoverflow.com/questions/1911109/clone-a-specific-git-branch">如何克隆一个单独分支</a>)
-<code>bash 
-git clone -b source --single-branch  git@github.com:yinsanwen/yinsanwen.github.io.git blog</code>
-这样，我们就恢复了我们之前的pelican。并继续用此更新我们的博客。</p>
-<p>我使用<code>Fabric</code>自动构建工具来使用我的pelican。见<a href="http://docs.getpelican.com/en/3.4.0/publish.html#fabric">Fabric用法</a>。</p>
-<hr/>
-<h3 id="3">3、发布博客</h3>
-<p>我的博客是托管在github的User Pages之上的。将pelican生成的output目录里面的静态网页放到其<code>master</code>分支上面即可。
-前面说过，pelican的其他目录也是有必要备份的。我将它们放在了source分支上面。</p>
-<p>可以使用<code>ghp-import</code>工具方便的将output目录里面的内容推送到github上面。这样我们在本地写博客的时候只需呆在source分支上面即可。而透过ghp-import来进行部署。具体步骤如下：
-<code>bash
-$ fab build
-$ ghp-import output
-$ git push origin gh-pages:master</code>
-<code>ghp-import output</code>命令会在工作空间创建一个<code>gh-pages</code>的分支，并将outout目录里面的内容更新到该分支。<br/>
-<code>git push</code>命令则将本地gh-pages分支推送到远程master分支。这样就完成了更新。
-(我们无需在远程仓库中备份gh-pages分支)。</p>
-<p>我们可以新建一个fab命令来一次完成后两个操作。在fabfile.py里面添加:
+pip install beautifulsoup4</code>
+一、针对markdown编写的博客</p>
+<p>首先需要在配置文件里面设置
 <code>python
-def deploy():
-    local('ghp-import output &amp;&amp; git push origin gh-pages:master')</code></p>
-<p>这样，通过步骤
-<code>bash
-fab build
-fab deploy</code>
-就可以快速的更新和发布文章。</p>
+MD_EXTENSIONS = (['toc'])</code>
+然后在markdown文件(.md)的开头处添加[TOC]标记。如下所示
+```
+title: My super title
+date: 4-4-2013
+tags: thats, awesome</p>
+<div class="toc">
+<ul>
+<li><a href="#pelican">安装Pelican插件</a></li>
+<li><a href="#_1">插件的目录</a></li>
+<li><a href="#_2">启用的插件列表</a><ul>
+<li><a href="#pelican_1">使用Pelican插件</a><ul>
+<li><a href="#extract_toc">extract_toc</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li><a href="#heading-1">Heading 1</a></li>
+</ul>
+</div>
+<h1 id="heading-1">Heading 1</h1>
+<p>Lorem ipsum dolor sit amet, consectetuer adipiscing elit. Aenean commodo ligula eget dolor. Aenean massa.
+```</p>
 <section>
 <div class="accordion" id="accordion2">
     <div class="accordion-group">
         <div class="accordion-heading">
             <a class="accordion-toggle disqus-comment-count" data-toggle="collapse" data-parent="#accordion2"
-                href="http://yinsanwen.github.io/pelicande-qian-yi-he-kuai-su-kai-shi.html#disqus_thread">
+                href="http://yinsanwen.github.io/pelicancha-jian-yong-fa.html#disqus_thread">
                 Comments
             </a>
         </div>
@@ -134,8 +135,8 @@ fab deploy</code>
 <div id="disqus_thread"></div>
 <script type="text/javascript">
     var disqus_shortname = 'sanween';
-        var disqus_identifier = 'http://yinsanwen.github.io/pelicande-qian-yi-he-kuai-su-kai-shi.html';
-    var disqus_url = 'http://yinsanwen.github.io/pelicande-qian-yi-he-kuai-su-kai-shi.html';
+        var disqus_identifier = 'http://yinsanwen.github.io/pelicancha-jian-yong-fa.html';
+    var disqus_url = 'http://yinsanwen.github.io/pelicancha-jian-yong-fa.html';
 
     (function() {
          var dsq = document.createElement('script'); dsq.type = 'text/javascript'; dsq.async = true;
@@ -155,9 +156,7 @@ fab deploy</code>
             <nav>
             <ul class="articles_timeline">
  
-                <li class="previous_article">« <a href="http://yinsanwen.github.io/send-email-using-spring.html" title="Previous: 使用Spring的Mail组件发送邮件">使用Spring的Mail组件发送邮件</a></li>
- 
-                <li class="next_article"><a href="http://yinsanwen.github.io/pelicancha-jian-yong-fa.html" title="Next: Pelican插件用法">Pelican插件用法</a> »</li>
+                <li class="previous_article">« <a href="http://yinsanwen.github.io/pelicande-qian-yi-he-kuai-su-kai-shi.html" title="Previous: Pelican的迁移和快速开始">Pelican的迁移和快速开始</a></li>
             </ul>
             </nav>
             </aside>
@@ -166,7 +165,7 @@ fab deploy</code>
         <div class="span2" style="float:right;font-size:0.9em;">
  
             <h4>Published</h4>
-            <time pubdate="pubdate" datetime="2014-08-13T22:46:52.820898"> 8月 13, 2014</time>
+            <time pubdate="pubdate" datetime="2014-08-13T23:05:00.376946"> 8月 13, 2014</time>
             <h4>Category</h4>
             <a class="category-link" href="/categories.html#Pelican-ref">Pelican</a> 
 
