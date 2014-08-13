@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
-<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom"><channel><title>sanwen's blog</title><link>/</link><description></description><atom:link href="/feeds/sanween.rss.xml" rel="self"></atom:link><lastBuildDate>Thu, 20 Mar 2014 20:53:00 +0800</lastBuildDate><item><title>利用Spring和Apache CXF构建REST Web Service</title><link>/build-REST-Web-Service-use-Spring-and-Apahce-CXF.html</link><description>&lt;p&gt;首先说一说JAX-RS，直接引用wiki上面的说明。&lt;/p&gt;
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom"><channel><title>sanwen的博客</title><link>/</link><description></description><atom:link href="/feeds/sanween.rss.xml" rel="self"></atom:link><lastBuildDate>Thu, 20 Mar 2014 20:53:00 +0800</lastBuildDate><item><title>利用Spring和Apache CXF构建REST Web Service</title><link>/build-REST-Web-Service-use-Spring-and-Apahce-CXF.html</link><description>&lt;p&gt;首先说一说JAX-RS，直接引用wiki上面的说明。&lt;/p&gt;
 &lt;blockquote&gt;
 &lt;p&gt;&lt;strong&gt;JAX-RS: Java API for RESTful Web Services&lt;/strong&gt;是一个Java编程语言的应用程序接口,支持按照&lt;strong&gt;表象化状态转变&lt;/strong&gt;(REST)架构风格创建Web服务. JAX-RS使用了Java SE 5引入的Java 标注来简化Web服务客户端和服务端的开发和部署。&lt;/p&gt;
 &lt;/blockquote&gt;
