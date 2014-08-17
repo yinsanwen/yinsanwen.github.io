@@ -73,14 +73,14 @@
     <div class="span8 article-content">
 
             
-<h2 id="tip-1">Tip 1. 使用配置文件</h2>
+<h2 id="tip-1">Tip 1. 使用配置文件<a class="headerlink" href="#tip-1" title="Permanent link">¶</a></h2>
 <p>定义一个配置文件，存放需要配置的信息。假设文件名为config.properties。</p>
 <div class="highlight"><pre># email configuration #
 system.email=xxxxxx@qq.com
 system.email.pwd=ysw******
 </pre></div>
 <p>如何使用该配置文件？</p>
-<h3 id="springxml">方法一 在Spring的配置文件xml中使用</h3>
+<h3 id="springxml">方法一 在Spring的配置文件xml中使用<a class="headerlink" href="#springxml" title="Permanent link">¶</a></h3>
 <ol>
 <li>
 <p>使用<code>&lt;context:property-placeholder /&gt;</code>标签，加载配置文件。</p>
@@ -107,7 +107,7 @@ system.email.pwd=ysw******
         <span class="nt">&lt;/property&gt;</span>
     <span class="nt">&lt;/bean&gt;</span>
 </pre></div>
-<h3 id="javautilproperties">方法二 使用<code>java.util.Properties</code>类</h3>
+<h3 id="javautilproperties">方法二 使用<code>java.util.Properties</code>类<a class="headerlink" href="#javautilproperties" title="Permanent link">¶</a></h3>
 <ol>
 <li>
 <p>使用单例模式创建Properties工厂类。</p>

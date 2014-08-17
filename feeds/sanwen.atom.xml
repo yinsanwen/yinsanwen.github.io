@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <feed xmlns="http://www.w3.org/2005/Atom"><title>sanwen的博客</title><link href="http://yinsanwen.github.io/" rel="alternate"></link><link href="http://yinsanwen.github.io/feeds/sanwen.atom.xml" rel="self"></link><id>http://yinsanwen.github.io/</id><updated>2014-08-14T02:15:57+08:00</updated><entry><title>Pelican的迁移和快速开始</title><link href="http://yinsanwen.github.io/pelicande-qian-yi-he-kuai-su-kai-shi.html" rel="alternate"></link><updated>2014-08-14T02:15:57+08:00</updated><author><name>sanwen</name></author><id>tag:yinsanwen.github.io,2014-08-14:pelicande-qian-yi-he-kuai-su-kai-shi.html</id><summary type="html">
-&lt;h3 id="1pelican"&gt;1、安装pelican&lt;/h3&gt;
+&lt;h3 id="1pelican"&gt;1、安装pelican&lt;a class="headerlink" href="#1pelican" title="Permanent link"&gt;¶&lt;/a&gt;&lt;/h3&gt;
 &lt;p&gt;使用&lt;code&gt;pip&lt;/code&gt;命令快速安装&lt;/p&gt;
 &lt;div class="highlight"&gt;&lt;pre&gt;&lt;span class="n"&gt;sudo&lt;/span&gt; &lt;span class="n"&gt;pip&lt;/span&gt; &lt;span class="n"&gt;install&lt;/span&gt; &lt;span class="n"&gt;pelican&lt;/span&gt;
 &lt;/pre&gt;&lt;/div&gt;
@@ -9,7 +9,7 @@
 &lt;/pre&gt;&lt;/div&gt;
 &lt;hr/&gt;
 &lt;p&gt;(可选) 如果你没有安装pip，请先安装pip(推荐)。否则直接到步骤2。&lt;/p&gt;
-&lt;h4 id="pip"&gt;安装pip&lt;/h4&gt;
+&lt;h4 id="pip"&gt;安装pip&lt;a class="headerlink" href="#pip" title="Permanent link"&gt;¶&lt;/a&gt;&lt;/h4&gt;
 &lt;p&gt;pip是一个python软件包管理工具。 &lt;/p&gt;
 &lt;p&gt;1、下载get-pip.py&lt;/p&gt;
 &lt;div class="highlight"&gt;&lt;pre&gt;sudo curl -O https://bootstrap.pypa.io/get-pip.py
@@ -18,7 +18,7 @@
 &lt;div class="highlight"&gt;&lt;pre&gt;sudo python get-pip.py
 &lt;/pre&gt;&lt;/div&gt;
 &lt;hr/&gt;
-&lt;h3 id="2pelican"&gt;2、迁移之前的Pelican博客&lt;/h3&gt;
+&lt;h3 id="2pelican"&gt;2、迁移之前的Pelican博客&lt;a class="headerlink" href="#2pelican" title="Permanent link"&gt;¶&lt;/a&gt;&lt;/h3&gt;
 &lt;p&gt;我之前使用过pelican写过博客，将output目录里面的内容作为github的master分支。其他目录(pelican配置等)作为source分支。托管在github上面。&lt;/p&gt;
 &lt;p&gt;我们首先取回source分支 (参考&lt;a href="http://stackoverflow.com/questions/1911109/clone-a-specific-git-branch"&gt;如何克隆一个单独分支&lt;/a&gt;)&lt;/p&gt;
 &lt;div class="highlight"&gt;&lt;pre&gt;git clone -b &lt;span class="nb"&gt;source&lt;/span&gt; --single-branch  git@github.com:yinsanwen/yinsanwen.github.io.git blog
@@ -26,7 +26,7 @@
 &lt;p&gt;这样，我们就恢复了我们之前的pelican。并继续用此更新我们的博客。&lt;/p&gt;
 &lt;p&gt;我使用&lt;code&gt;Fabric&lt;/code&gt;自动构建工具来使用我的pelican。见&lt;a href="http://docs.getpelican.com/en/3.4.0/publish.html#fabric"&gt;Fabric用法&lt;/a&gt;。&lt;/p&gt;
 &lt;hr/&gt;
-&lt;h3 id="3"&gt;3、发布博客&lt;/h3&gt;
+&lt;h3 id="3"&gt;3、发布博客&lt;a class="headerlink" href="#3" title="Permanent link"&gt;¶&lt;/a&gt;&lt;/h3&gt;
 &lt;p&gt;我的博客是托管在github的User Pages之上的。将pelican生成的output目录里面的静态网页放到其&lt;code&gt;master&lt;/code&gt;分支上面即可。
 前面说过，pelican的其他目录也是有必要备份的。我将它们放在了source分支上面。&lt;/p&gt;
 &lt;p&gt;可以使用&lt;code&gt;ghp-import&lt;/code&gt;工具方便的将output目录里面的内容推送到github上面。这样我们在本地写博客的时候只需呆在source分支上面即可。而透过ghp-import来进行部署。具体步骤如下：&lt;/p&gt;
@@ -46,7 +46,7 @@
 fab deploy
 &lt;/pre&gt;&lt;/div&gt;
 &lt;p&gt;就可以快速的更新和发布文章。&lt;/p&gt;</summary></entry><entry><title>Pelican插件用法</title><link href="http://yinsanwen.github.io/pelicancha-jian-yong-fa.html" rel="alternate"></link><updated>2014-08-14T02:14:18+08:00</updated><author><name>sanwen</name></author><id>tag:yinsanwen.github.io,2014-08-14:pelicancha-jian-yong-fa.html</id><summary type="html">
-&lt;h2 id="pelican"&gt;安装Pelican插件&lt;/h2&gt;
+&lt;h2 id="pelican"&gt;安装Pelican插件&lt;a class="headerlink" href="#pelican" title="Permanent link"&gt;¶&lt;/a&gt;&lt;/h2&gt;
 &lt;p&gt;下载Pelican插件，放在pelican-plugins目录中。&lt;/p&gt;
 &lt;div class="highlight"&gt;&lt;pre&gt;git clone https://github.com/getpelican/pelican-plugins
 &lt;/pre&gt;&lt;/div&gt;
@@ -55,8 +55,8 @@ fab deploy
 &lt;span class="nv"&gt;PLUGINS&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="o"&gt;[&lt;/span&gt;&lt;span class="s1"&gt;'assets'&lt;/span&gt;, &lt;span class="s1"&gt;'sitemap'&lt;/span&gt;, &lt;span class="s1"&gt;'gravatar'&lt;/span&gt;&lt;span class="o"&gt;]&lt;/span&gt; &lt;span class="c"&gt;# 启用的插件列表&lt;/span&gt;
 &lt;/pre&gt;&lt;/div&gt;
 &lt;hr/&gt;
-&lt;h2 id="pelican_1"&gt;使用Pelican插件&lt;/h2&gt;
-&lt;h3 id="extract_toc"&gt;extract_toc&lt;/h3&gt;
+&lt;h2 id="pelican_1"&gt;使用Pelican插件&lt;a class="headerlink" href="#pelican_1" title="Permanent link"&gt;¶&lt;/a&gt;&lt;/h2&gt;
+&lt;h3 id="extract_toc"&gt;extract_toc&lt;a class="headerlink" href="#extract_toc" title="Permanent link"&gt;¶&lt;/a&gt;&lt;/h3&gt;
 &lt;p&gt;extract_toc插件需要BeautifulSoup的支持&lt;/p&gt;
 &lt;div class="highlight"&gt;&lt;pre&gt;pip install beautifulsoup4
 &lt;/pre&gt;&lt;/div&gt;
@@ -90,7 +90,7 @@ Lorem ipsum dolor sit amet, consectetuer adipiscing elit. Aenean commodo ligula 
 &lt;p&gt;&lt;em&gt;void send(SimpleMailMessage simpleMessage)&lt;/em&gt;&lt;br /&gt;
 &amp;nbsp;&amp;nbsp;Send the given simple mail message.&lt;/p&gt;
 &lt;/blockquote&gt;
-&lt;h3&gt;基本步骤&lt;/h3&gt;
+&lt;h3 id="_1"&gt;基本步骤&lt;a class="headerlink" href="#_1" title="Permanent link"&gt;&amp;para;&lt;/a&gt;&lt;/h3&gt;
 &lt;ol&gt;
 &lt;li&gt;
 &lt;p&gt;拿到一个&lt;code&gt;JavaMailSenderImpl&lt;/code&gt;实例。我们可以在自己的代码中new一个JavaMailSenderImpl对象，也可以将JavaMailSenderImpl声明成一个bean，放在Spring的容器中。&lt;/p&gt;
@@ -104,7 +104,7 @@ Lorem ipsum dolor sit amet, consectetuer adipiscing elit. Aenean commodo ligula 
 &lt;/ol&gt;
 &lt;p&gt;下面我们根据实例说明JavaMailSenderImpl的用法.&lt;/p&gt;
 &lt;hr /&gt;
-&lt;h3&gt;step 1&lt;/h3&gt;
+&lt;h3 id="step-1"&gt;step 1&lt;a class="headerlink" href="#step-1" title="Permanent link"&gt;&amp;para;&lt;/a&gt;&lt;/h3&gt;
 &lt;p&gt;在spring的配置文件中声明JavaMailSenderImpl，并配置其有关的属性。&lt;/p&gt;
 &lt;div class="highlight"&gt;&lt;pre&gt;&lt;span class="cp"&gt;&amp;lt;?xml version=&amp;quot;1.0&amp;quot; encoding=&amp;quot;UTF-8&amp;quot;?&amp;gt;&lt;/span&gt;
 &lt;span class="nt"&gt;&amp;lt;beans&lt;/span&gt; &lt;span class="na"&gt;xmlns=&lt;/span&gt;&lt;span class="s"&gt;&amp;quot;http://www.springframework.org/schema/beans&amp;quot;&lt;/span&gt;
@@ -137,7 +137,7 @@ Lorem ipsum dolor sit amet, consectetuer adipiscing elit. Aenean commodo ligula 
 &lt;/pre&gt;&lt;/div&gt;
 
 
-&lt;h3&gt;step 2&lt;/h3&gt;
+&lt;h3 id="step-2"&gt;step 2&lt;a class="headerlink" href="#step-2" title="Permanent link"&gt;&amp;para;&lt;/a&gt;&lt;/h3&gt;
 &lt;p&gt;声明我们的service类，调用JavaMailSenderImpl的方法。&lt;/p&gt;
 &lt;div class="highlight"&gt;&lt;pre&gt;&lt;span class="kn"&gt;package&lt;/span&gt; &lt;span class="n"&gt;spring&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="na"&gt;mail&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="na"&gt;demo&lt;/span&gt;&lt;span class="o"&gt;;&lt;/span&gt;
 
@@ -163,7 +163,7 @@ Lorem ipsum dolor sit amet, consectetuer adipiscing elit. Aenean commodo ligula 
 &lt;/pre&gt;&lt;/div&gt;
 
 
-&lt;h3&gt;step 3&lt;/h3&gt;
+&lt;h3 id="step-3"&gt;step 3&lt;a class="headerlink" href="#step-3" title="Permanent link"&gt;&amp;para;&lt;/a&gt;&lt;/h3&gt;
 &lt;p&gt;使用JUint对该方法进行测试。&lt;/p&gt;
 &lt;div class="highlight"&gt;&lt;pre&gt;&lt;span class="kn"&gt;package&lt;/span&gt; &lt;span class="n"&gt;spring&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="na"&gt;mail&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="na"&gt;demo&lt;/span&gt;&lt;span class="o"&gt;;&lt;/span&gt;
 
@@ -191,15 +191,15 @@ Lorem ipsum dolor sit amet, consectetuer adipiscing elit. Aenean commodo ligula 
 &lt;/pre&gt;&lt;/div&gt;
 
 
-&lt;p&gt;关于如何使用JUint测试Spring项目。可以参考&lt;a href="http://about:blank"&gt;使用JUnit测试Spring项目&lt;/a&gt;&lt;/p&gt;</summary><category term="Spring"></category><category term="Mail"></category></entry><entry><title>tips-in-javaweb</title><link href="http://yinsanwen.github.io/tips-in-javaweb.html" rel="alternate"></link><updated>2014-04-08T00:00:00+08:00</updated><author><name>sanwen</name></author><id>tag:yinsanwen.github.io,2014-04-08:tips-in-javaweb.html</id><summary type="html">
-&lt;h2 id="tip-1"&gt;Tip 1. 使用配置文件&lt;/h2&gt;
+&lt;p&gt;关于如何使用JUint测试Spring项目。可以参考&lt;a href="http://about:blank"&gt;使用JUnit测试Spring项目&lt;/a&gt;&lt;/p&gt;</summary><category term="spring"></category><category term="email"></category></entry><entry><title>tips-in-javaweb</title><link href="http://yinsanwen.github.io/tips-in-javaweb.html" rel="alternate"></link><updated>2014-04-08T00:00:00+08:00</updated><author><name>sanwen</name></author><id>tag:yinsanwen.github.io,2014-04-08:tips-in-javaweb.html</id><summary type="html">
+&lt;h2 id="tip-1"&gt;Tip 1. 使用配置文件&lt;a class="headerlink" href="#tip-1" title="Permanent link"&gt;¶&lt;/a&gt;&lt;/h2&gt;
 &lt;p&gt;定义一个配置文件，存放需要配置的信息。假设文件名为config.properties。&lt;/p&gt;
 &lt;div class="highlight"&gt;&lt;pre&gt;# email configuration #
 system.email=xxxxxx@qq.com
 system.email.pwd=ysw******
 &lt;/pre&gt;&lt;/div&gt;
 &lt;p&gt;如何使用该配置文件？&lt;/p&gt;
-&lt;h3 id="springxml"&gt;方法一 在Spring的配置文件xml中使用&lt;/h3&gt;
+&lt;h3 id="springxml"&gt;方法一 在Spring的配置文件xml中使用&lt;a class="headerlink" href="#springxml" title="Permanent link"&gt;¶&lt;/a&gt;&lt;/h3&gt;
 &lt;ol&gt;
 &lt;li&gt;
 &lt;p&gt;使用&lt;code&gt;&amp;lt;context:property-placeholder /&amp;gt;&lt;/code&gt;标签，加载配置文件。&lt;/p&gt;
@@ -226,7 +226,7 @@ system.email.pwd=ysw******
         &lt;span class="nt"&gt;&amp;lt;/property&amp;gt;&lt;/span&gt;
     &lt;span class="nt"&gt;&amp;lt;/bean&amp;gt;&lt;/span&gt;
 &lt;/pre&gt;&lt;/div&gt;
-&lt;h3 id="javautilproperties"&gt;方法二 使用&lt;code&gt;java.util.Properties&lt;/code&gt;类&lt;/h3&gt;
+&lt;h3 id="javautilproperties"&gt;方法二 使用&lt;code&gt;java.util.Properties&lt;/code&gt;类&lt;a class="headerlink" href="#javautilproperties" title="Permanent link"&gt;¶&lt;/a&gt;&lt;/h3&gt;
 &lt;ol&gt;
 &lt;li&gt;
 &lt;p&gt;使用单例模式创建Properties工厂类。&lt;/p&gt;

@@ -6,7 +6,7 @@
         <meta name="author" content="sanwen" />
         <meta name="copyright" content="sanwen" />
 
-<meta name="keywords" content=", Pelican, " />
+<meta name="keywords" content=", 建站, " />
         <title>Pelican的迁移和快速开始  · sanwen的博客
 </title>
         <link href="http://cdn-images.mailchimp.com/embedcode/slim-081711.css" rel="stylesheet" type="text/css">
@@ -74,7 +74,7 @@
     <div class="span8 article-content">
 
             
-<h3 id="1pelican">1、安装pelican</h3>
+<h3 id="1pelican">1、安装pelican<a class="headerlink" href="#1pelican" title="Permanent link">¶</a></h3>
 <p>使用<code>pip</code>命令快速安装</p>
 <div class="highlight"><pre><span class="n">sudo</span> <span class="n">pip</span> <span class="n">install</span> <span class="n">pelican</span>
 </pre></div>
@@ -83,7 +83,7 @@
 </pre></div>
 <hr/>
 <p>(可选) 如果你没有安装pip，请先安装pip(推荐)。否则直接到步骤2。</p>
-<h4 id="pip">安装pip</h4>
+<h4 id="pip">安装pip<a class="headerlink" href="#pip" title="Permanent link">¶</a></h4>
 <p>pip是一个python软件包管理工具。 </p>
 <p>1、下载get-pip.py</p>
 <div class="highlight"><pre>sudo curl -O https://bootstrap.pypa.io/get-pip.py
@@ -92,7 +92,7 @@
 <div class="highlight"><pre>sudo python get-pip.py
 </pre></div>
 <hr/>
-<h3 id="2pelican">2、迁移之前的Pelican博客</h3>
+<h3 id="2pelican">2、迁移之前的Pelican博客<a class="headerlink" href="#2pelican" title="Permanent link">¶</a></h3>
 <p>我之前使用过pelican写过博客，将output目录里面的内容作为github的master分支。其他目录(pelican配置等)作为source分支。托管在github上面。</p>
 <p>我们首先取回source分支 (参考<a href="http://stackoverflow.com/questions/1911109/clone-a-specific-git-branch">如何克隆一个单独分支</a>)</p>
 <div class="highlight"><pre>git clone -b <span class="nb">source</span> --single-branch  git@github.com:yinsanwen/yinsanwen.github.io.git blog
@@ -100,7 +100,7 @@
 <p>这样，我们就恢复了我们之前的pelican。并继续用此更新我们的博客。</p>
 <p>我使用<code>Fabric</code>自动构建工具来使用我的pelican。见<a href="http://docs.getpelican.com/en/3.4.0/publish.html#fabric">Fabric用法</a>。</p>
 <hr/>
-<h3 id="3">3、发布博客</h3>
+<h3 id="3">3、发布博客<a class="headerlink" href="#3" title="Permanent link">¶</a></h3>
 <p>我的博客是托管在github的User Pages之上的。将pelican生成的output目录里面的静态网页放到其<code>master</code>分支上面即可。
 前面说过，pelican的其他目录也是有必要备份的。我将它们放在了source分支上面。</p>
 <p>可以使用<code>ghp-import</code>工具方便的将output目录里面的内容推送到github上面。这样我们在本地写博客的时候只需呆在source分支上面即可。而透过ghp-import来进行部署。具体步骤如下：</p>
@@ -167,7 +167,7 @@ fab deploy
             <h4>Published</h4>
             <time pubdate="pubdate" datetime="2014-08-14T02:15:57.689137"> 8月 14, 2014</time>
             <h4>Category</h4>
-            <a class="category-link" href="/categories.html#Pelican-ref">Pelican</a> 
+            <a class="category-link" href="/categories.html#建站-ref">建站</a> 
 
         </div>
         </section>

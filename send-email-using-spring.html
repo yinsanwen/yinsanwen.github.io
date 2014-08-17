@@ -6,7 +6,7 @@
         <meta name="author" content="sanwen" />
         <meta name="copyright" content="sanwen" />
 
-<meta name="keywords" content="Spring, Mail, Java Web, " />
+<meta name="keywords" content="spring, email, Java Web, " />
         <title>使用Spring的Mail组件发送邮件  · sanwen的博客
 </title>
         <link href="http://cdn-images.mailchimp.com/embedcode/slim-081711.css" rel="stylesheet" type="text/css">
@@ -74,7 +74,7 @@
 <p><em>void send(SimpleMailMessage simpleMessage)</em><br />
 &nbsp;&nbsp;Send the given simple mail message.</p>
 </blockquote>
-<h3>基本步骤</h3>
+<h3 id="_1">基本步骤<a class="headerlink" href="#_1" title="Permanent link">&para;</a></h3>
 <ol>
 <li>
 <p>拿到一个<code>JavaMailSenderImpl</code>实例。我们可以在自己的代码中new一个JavaMailSenderImpl对象，也可以将JavaMailSenderImpl声明成一个bean，放在Spring的容器中。</p>
@@ -88,7 +88,7 @@
 </ol>
 <p>下面我们根据实例说明JavaMailSenderImpl的用法.</p>
 <hr />
-<h3>step 1</h3>
+<h3 id="step-1">step 1<a class="headerlink" href="#step-1" title="Permanent link">&para;</a></h3>
 <p>在spring的配置文件中声明JavaMailSenderImpl，并配置其有关的属性。</p>
 <div class="highlight"><pre><span class="cp">&lt;?xml version=&quot;1.0&quot; encoding=&quot;UTF-8&quot;?&gt;</span>
 <span class="nt">&lt;beans</span> <span class="na">xmlns=</span><span class="s">&quot;http://www.springframework.org/schema/beans&quot;</span>
@@ -121,7 +121,7 @@
 </pre></div>
 
 
-<h3>step 2</h3>
+<h3 id="step-2">step 2<a class="headerlink" href="#step-2" title="Permanent link">&para;</a></h3>
 <p>声明我们的service类，调用JavaMailSenderImpl的方法。</p>
 <div class="highlight"><pre><span class="kn">package</span> <span class="n">spring</span><span class="o">.</span><span class="na">mail</span><span class="o">.</span><span class="na">demo</span><span class="o">;</span>
 
@@ -147,7 +147,7 @@
 </pre></div>
 
 
-<h3>step 3</h3>
+<h3 id="step-3">step 3<a class="headerlink" href="#step-3" title="Permanent link">&para;</a></h3>
 <p>使用JUint对该方法进行测试。</p>
 <div class="highlight"><pre><span class="kn">package</span> <span class="n">spring</span><span class="o">.</span><span class="na">mail</span><span class="o">.</span><span class="na">demo</span><span class="o">;</span>
 
@@ -228,11 +228,11 @@
             <a class="category-link" href="/categories.html#Java-Web-ref">Java Web</a> 
             <h4>Tags</h4>
             <ul class="list-of-tags tags-in-article"> 
-                <li><a href="/tags.html#Mail-ref">Mail
+                <li><a href="/tags.html#email-ref">email
                     <span>1</span>
 </a></li>
-                <li><a href="/tags.html#Spring-ref">Spring
-                    <span>1</span>
+                <li><a href="/tags.html#spring-ref">spring
+                    <span>2</span>
 </a></li>
             </ul>
 

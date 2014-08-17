@@ -6,7 +6,7 @@
         <meta name="author" content="sanween" />
         <meta name="copyright" content="sanween" />
 
-<meta name="keywords" content="jax-rs, rest, cxf, j2EE, " />
+<meta name="keywords" content="rest, spring, Java Web, " />
         <title>利用Spring和Apache CXF构建REST Web Service  · sanwen的博客
 </title>
         <link href="http://cdn-images.mailchimp.com/embedcode/slim-081711.css" rel="stylesheet" type="text/css">
@@ -71,10 +71,10 @@ Restlet，由Jerome Louvel和Dave Pawson开发，是最早的REST框架，先于
 <p>好的，前面介绍了一些构建REST服务的背景，我们下面使用Apache CXF来完成REST服务的构建。<br />
 因为Aapche CXF是高依赖于Spring的，我们也用到了Spring。<br />
 （其实Spring也有自己的REST支持，不过具体是通过什么支持，还没有了解，以后有机会比较一下和本文采用方式的区别）。</p>
-<h2>Step 1. 基本源代码</h2>
+<h2 id="step-1">Step 1. 基本源代码<a class="headerlink" href="#step-1" title="Permanent link">&para;</a></h2>
 <p>在这个Demo中，我们假设系统中有一些用户的信息，我们定义一个User实体类。然后开放REST接口，通过REST服务的方式对系统中的User进行CRUD
 (Create, Read, Update, Delete)操作。</p>
-<h3>Model层</h3>
+<h3 id="model">Model层<a class="headerlink" href="#model" title="Permanent link">&para;</a></h3>
 <p>定义User实体类，是一个简单的POJO</p>
 <p><em>User.java</em>  </p>
 <div class="highlight"><pre><span class="kn">package</span> <span class="n">info</span><span class="o">.</span><span class="na">sanween</span><span class="o">.</span><span class="na">demo</span><span class="o">.</span><span class="na">rest</span><span class="o">.</span><span class="na">model</span><span class="o">;</span>
@@ -95,7 +95,7 @@ Restlet，由Jerome Louvel和Dave Pawson开发，是最早的REST框架，先于
 </pre></div>
 
 
-<h3>Service层</h3>
+<h3 id="service">Service层<a class="headerlink" href="#service" title="Permanent link">&para;</a></h3>
 <p>为了例子的简单，我们没有定义Dao层，直接将User信息存放在内存中。</p>
 <p><strong>定义JAX-RS Service类，在类名上使用@Path注解</strong>。（该类是可以通过CXF暴露给外界的Service类）。<br />
 <em>有关该类中的注解说明 以及POST,PUT,GET,DELETE对应的CRUD操作，请了解JAX-RS规范。</em></p>
@@ -212,7 +212,7 @@ Restlet，由Jerome Louvel和Dave Pawson开发，是最早的REST框架，先于
 
 
 <p>上面的代码中，我们将User数据信息直接放置在内存之中。</p>
-<h2>Step 2. 配置文件</h2>
+<h2 id="step-2">Step 2. 配置文件<a class="headerlink" href="#step-2" title="Permanent link">&para;</a></h2>
 <p>好了，到目前为止。我们所需要编写的代码都已经完成了。接下来就是使用Spring和CXF调用这些代码。</p>
 <p>在WEB-INF目录下创建rest-context.xml文件。在该配置文件中，定义REST的配置内容</p>
 <p><em>rest-content.xml</em>  </p>
@@ -320,7 +320,7 @@ Restlet，由Jerome Louvel和Dave Pawson开发，是最早的REST框架，先于
 <p>例如，<strong>GET http://localhost:8080/RestDemo/services/rest/UserManager/users/{id}</strong><br />
 就会调用UserManagerService类的readUser()方法
 就可以获取id为{id}的用户的信息。</p>
-<h2>step 3. 测试</h2>
+<h2 id="step-3">step 3. 测试<a class="headerlink" href="#step-3" title="Permanent link">&para;</a></h2>
 <p>我们使用Chrome的扩展应用<a href="https://chrome.google.com/webstore/detail/advanced-rest-client/hgmloofddffdnphfgcellkdfbfbjeloo">Advanced Rest Client</a>
 来模拟HTTP通信和测试。
 Advanced Rest Client 界面如下:  </p>
@@ -414,17 +414,14 @@ Advanced Rest Client 界面如下:  </p>
             <h4>Published</h4>
             <time pubdate="pubdate" datetime="2014-03-20T20:53:00"> 3月 20, 2014</time>
             <h4>Category</h4>
-            <a class="category-link" href="/categories.html#j2EE-ref">j2EE</a> 
+            <a class="category-link" href="/categories.html#Java-Web-ref">Java Web</a> 
             <h4>Tags</h4>
             <ul class="list-of-tags tags-in-article"> 
-                <li><a href="/tags.html#cxf-ref">cxf
-                    <span>1</span>
-</a></li>
-                <li><a href="/tags.html#jax-rs-ref">jax-rs
-                    <span>1</span>
-</a></li>
                 <li><a href="/tags.html#rest-ref">rest
                     <span>1</span>
+</a></li>
+                <li><a href="/tags.html#spring-ref">spring
+                    <span>2</span>
 </a></li>
             </ul>
 
