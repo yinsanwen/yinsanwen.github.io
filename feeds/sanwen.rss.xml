@@ -1,5 +1,34 @@
 <?xml version="1.0" encoding="utf-8"?>
-<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom"><channel><title>sanwen的博客</title><link>http://yinsanwen.github.io/</link><description></description><atom:link href="http://yinsanwen.github.io/feeds/sanwen.rss.xml" rel="self"></atom:link><lastBuildDate>Thu, 14 Aug 2014 02:15:57 +0800</lastBuildDate><item><title>Pelican的迁移和快速开始</title><link>http://yinsanwen.github.io/pelicande-qian-yi-he-kuai-su-kai-shi.html</link><description>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom"><channel><title>sanwen的博客</title><link>http://yinsanwen.github.io/</link><description></description><atom:link href="http://yinsanwen.github.io/feeds/sanwen.rss.xml" rel="self"></atom:link><lastBuildDate>Mon, 18 Aug 2014 21:35:24 +0800</lastBuildDate><item><title>Pelican插件用法</title><link>http://yinsanwen.github.io/posts/2014/08/18/pelican-plugins-usage.html</link><description>
+&lt;h2 id="pelican"&gt;安装Pelican插件&lt;a class="headerlink" href="#pelican" title="Permanent link"&gt;¶&lt;/a&gt;&lt;/h2&gt;
+&lt;p&gt;下载Pelican插件，放在pelican-plugins目录中。&lt;/p&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;git clone https://github.com/getpelican/pelican-plugins
+&lt;/pre&gt;&lt;/div&gt;
+&lt;p&gt;配置pelicanconf.py文件&lt;/p&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span class="nv"&gt;PLUGIN_PATHS&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="o"&gt;[&lt;/span&gt;&lt;span class="s1"&gt;'path/to/pelican-plugins'&lt;/span&gt;&lt;span class="o"&gt;]&lt;/span&gt;  &lt;span class="c"&gt;# 插件的目录  &lt;/span&gt;
+&lt;span class="nv"&gt;PLUGINS&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="o"&gt;[&lt;/span&gt;&lt;span class="s1"&gt;'assets'&lt;/span&gt;, &lt;span class="s1"&gt;'sitemap'&lt;/span&gt;, &lt;span class="s1"&gt;'gravatar'&lt;/span&gt;&lt;span class="o"&gt;]&lt;/span&gt; &lt;span class="c"&gt;# 启用的插件列表&lt;/span&gt;
+&lt;/pre&gt;&lt;/div&gt;
+&lt;hr/&gt;
+&lt;h2 id="pelican_1"&gt;使用Pelican插件&lt;a class="headerlink" href="#pelican_1" title="Permanent link"&gt;¶&lt;/a&gt;&lt;/h2&gt;
+&lt;h3 id="extract_toc"&gt;extract_toc&lt;a class="headerlink" href="#extract_toc" title="Permanent link"&gt;¶&lt;/a&gt;&lt;/h3&gt;
+&lt;p&gt;extract_toc插件需要BeautifulSoup的支持&lt;/p&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;pip install beautifulsoup4
+&lt;/pre&gt;&lt;/div&gt;
+&lt;p&gt;一、针对markdown编写的博客&lt;/p&gt;
+&lt;p&gt;首先需要在配置文件里面设置&lt;/p&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span class="n"&gt;MD_EXTENSIONS&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="p"&gt;([&lt;/span&gt;&lt;span class="s"&gt;'toc'&lt;/span&gt;&lt;span class="p"&gt;])&lt;/span&gt;
+&lt;/pre&gt;&lt;/div&gt;
+&lt;p&gt;然后在markdown文件(.md)的开头处添加[TOC]标记。如下所示&lt;/p&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;title: My super title
+date: 4-4-2013
+tags: thats, awesome
+
+&lt;span class="o"&gt;[&lt;/span&gt;TOC&lt;span class="o"&gt;]&lt;/span&gt;
+
+&lt;span class="c"&gt;# Heading 1 #&lt;/span&gt;
+
+Lorem ipsum dolor sit amet, consectetuer adipiscing elit. Aenean commodo ligula eget dolor. Aenean massa.
+&lt;/pre&gt;&lt;/div&gt;</description><dc:creator xmlns:dc="http://purl.org/dc/elements/1.1/">sanwen</dc:creator><pubDate>Mon, 18 Aug 2014 21:35:24 +0800</pubDate><guid>tag:yinsanwen.github.io,2014-08-18:posts/2014/08/18/pelican-plugins-usage.html</guid></item><item><title>Pelican的迁移和快速开始</title><link>http://yinsanwen.github.io/posts/2014/08/18/migrate-pelican-and-quickstart.html</link><description>
 &lt;h3 id="1pelican"&gt;1、安装pelican&lt;a class="headerlink" href="#1pelican" title="Permanent link"&gt;¶&lt;/a&gt;&lt;/h3&gt;
 &lt;p&gt;使用&lt;code&gt;pip&lt;/code&gt;命令快速安装&lt;/p&gt;
 &lt;div class="highlight"&gt;&lt;pre&gt;&lt;span class="n"&gt;sudo&lt;/span&gt; &lt;span class="n"&gt;pip&lt;/span&gt; &lt;span class="n"&gt;install&lt;/span&gt; &lt;span class="n"&gt;pelican&lt;/span&gt;
@@ -45,36 +74,7 @@
 &lt;div class="highlight"&gt;&lt;pre&gt;fab build
 fab deploy
 &lt;/pre&gt;&lt;/div&gt;
-&lt;p&gt;就可以快速的更新和发布文章。&lt;/p&gt;</description><dc:creator xmlns:dc="http://purl.org/dc/elements/1.1/">sanwen</dc:creator><pubDate>Thu, 14 Aug 2014 02:15:57 +0800</pubDate><guid>tag:yinsanwen.github.io,2014-08-14:pelicande-qian-yi-he-kuai-su-kai-shi.html</guid></item><item><title>Pelican插件用法</title><link>http://yinsanwen.github.io/pelicancha-jian-yong-fa.html</link><description>
-&lt;h2 id="pelican"&gt;安装Pelican插件&lt;a class="headerlink" href="#pelican" title="Permanent link"&gt;¶&lt;/a&gt;&lt;/h2&gt;
-&lt;p&gt;下载Pelican插件，放在pelican-plugins目录中。&lt;/p&gt;
-&lt;div class="highlight"&gt;&lt;pre&gt;git clone https://github.com/getpelican/pelican-plugins
-&lt;/pre&gt;&lt;/div&gt;
-&lt;p&gt;配置pelicanconf.py文件&lt;/p&gt;
-&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span class="nv"&gt;PLUGIN_PATHS&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="o"&gt;[&lt;/span&gt;&lt;span class="s1"&gt;'path/to/pelican-plugins'&lt;/span&gt;&lt;span class="o"&gt;]&lt;/span&gt;  &lt;span class="c"&gt;# 插件的目录  &lt;/span&gt;
-&lt;span class="nv"&gt;PLUGINS&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="o"&gt;[&lt;/span&gt;&lt;span class="s1"&gt;'assets'&lt;/span&gt;, &lt;span class="s1"&gt;'sitemap'&lt;/span&gt;, &lt;span class="s1"&gt;'gravatar'&lt;/span&gt;&lt;span class="o"&gt;]&lt;/span&gt; &lt;span class="c"&gt;# 启用的插件列表&lt;/span&gt;
-&lt;/pre&gt;&lt;/div&gt;
-&lt;hr/&gt;
-&lt;h2 id="pelican_1"&gt;使用Pelican插件&lt;a class="headerlink" href="#pelican_1" title="Permanent link"&gt;¶&lt;/a&gt;&lt;/h2&gt;
-&lt;h3 id="extract_toc"&gt;extract_toc&lt;a class="headerlink" href="#extract_toc" title="Permanent link"&gt;¶&lt;/a&gt;&lt;/h3&gt;
-&lt;p&gt;extract_toc插件需要BeautifulSoup的支持&lt;/p&gt;
-&lt;div class="highlight"&gt;&lt;pre&gt;pip install beautifulsoup4
-&lt;/pre&gt;&lt;/div&gt;
-&lt;p&gt;一、针对markdown编写的博客&lt;/p&gt;
-&lt;p&gt;首先需要在配置文件里面设置&lt;/p&gt;
-&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span class="n"&gt;MD_EXTENSIONS&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="p"&gt;([&lt;/span&gt;&lt;span class="s"&gt;'toc'&lt;/span&gt;&lt;span class="p"&gt;])&lt;/span&gt;
-&lt;/pre&gt;&lt;/div&gt;
-&lt;p&gt;然后在markdown文件(.md)的开头处添加[TOC]标记。如下所示&lt;/p&gt;
-&lt;div class="highlight"&gt;&lt;pre&gt;title: My super title
-date: 4-4-2013
-tags: thats, awesome
-
-&lt;span class="o"&gt;[&lt;/span&gt;TOC&lt;span class="o"&gt;]&lt;/span&gt;
-
-&lt;span class="c"&gt;# Heading 1 #&lt;/span&gt;
-
-Lorem ipsum dolor sit amet, consectetuer adipiscing elit. Aenean commodo ligula eget dolor. Aenean massa.
-&lt;/pre&gt;&lt;/div&gt;</description><dc:creator xmlns:dc="http://purl.org/dc/elements/1.1/">sanwen</dc:creator><pubDate>Thu, 14 Aug 2014 02:14:18 +0800</pubDate><guid>tag:yinsanwen.github.io,2014-08-14:pelicancha-jian-yong-fa.html</guid></item><item><title>使用Spring的Mail组件发送邮件</title><link>http://yinsanwen.github.io/send-email-using-spring.html</link><description>&lt;p&gt;很多场合我们都需要在我们的系统中使用发送邮件的功能，虽然JAVA提供了&lt;code&gt;JavaMail&lt;/code&gt;可供使用，但是Spring也在其框架中提供了更高层的邮件组件。在Spring中发送邮件主要使用&lt;strong&gt;&lt;code&gt;org.springframework.mail.javamail.JavaMailSenderImpl&lt;/code&gt;&lt;/strong&gt;这个类。使用JavaMailSenderImpl，需要&lt;code&gt;org.springframework.context.support-3.0.5.RELEASE.jar&lt;/code&gt;这个jar包。&lt;/p&gt;
+&lt;p&gt;就可以快速的更新和发布文章。&lt;/p&gt;</description><dc:creator xmlns:dc="http://purl.org/dc/elements/1.1/">sanwen</dc:creator><pubDate>Mon, 18 Aug 2014 21:35:05 +0800</pubDate><guid>tag:yinsanwen.github.io,2014-08-18:posts/2014/08/18/migrate-pelican-and-quickstart.html</guid></item><item><title>使用Spring的Mail组件发送邮件</title><link>http://yinsanwen.github.io/posts/2014/04/08/send-email-using-spring.html</link><description>&lt;p&gt;很多场合我们都需要在我们的系统中使用发送邮件的功能，虽然JAVA提供了&lt;code&gt;JavaMail&lt;/code&gt;可供使用，但是Spring也在其框架中提供了更高层的邮件组件。在Spring中发送邮件主要使用&lt;strong&gt;&lt;code&gt;org.springframework.mail.javamail.JavaMailSenderImpl&lt;/code&gt;&lt;/strong&gt;这个类。使用JavaMailSenderImpl，需要&lt;code&gt;org.springframework.context.support-3.0.5.RELEASE.jar&lt;/code&gt;这个jar包。&lt;/p&gt;
 &lt;p&gt;首先看一看这个类的API说明&lt;/p&gt;
 &lt;blockquote&gt;
 &lt;p&gt;&lt;em&gt;public class JavaMailSenderImpl &lt;/em&gt;
@@ -191,7 +191,7 @@ Lorem ipsum dolor sit amet, consectetuer adipiscing elit. Aenean commodo ligula 
 &lt;/pre&gt;&lt;/div&gt;
 
 
-&lt;p&gt;关于如何使用JUint测试Spring项目。可以参考&lt;a href="http://about:blank"&gt;使用JUnit测试Spring项目&lt;/a&gt;&lt;/p&gt;</description><dc:creator xmlns:dc="http://purl.org/dc/elements/1.1/">sanwen</dc:creator><pubDate>Tue, 08 Apr 2014 00:00:00 +0800</pubDate><guid>tag:yinsanwen.github.io,2014-04-08:send-email-using-spring.html</guid><category>spring</category><category>email</category></item><item><title>tips-in-javaweb</title><link>http://yinsanwen.github.io/tips-in-javaweb.html</link><description>
+&lt;p&gt;关于如何使用JUint测试Spring项目。可以参考&lt;a href="http://about:blank"&gt;使用JUnit测试Spring项目&lt;/a&gt;&lt;/p&gt;</description><dc:creator xmlns:dc="http://purl.org/dc/elements/1.1/">sanwen</dc:creator><pubDate>Tue, 08 Apr 2014 00:00:00 +0800</pubDate><guid>tag:yinsanwen.github.io,2014-04-08:posts/2014/04/08/send-email-using-spring.html</guid><category>spring</category><category>email</category></item><item><title>tips-in-javaweb</title><link>http://yinsanwen.github.io/posts/2014/04/08/tips-in-javaweb.html</link><description>
 &lt;h2 id="tip-1"&gt;Tip 1. 使用配置文件&lt;a class="headerlink" href="#tip-1" title="Permanent link"&gt;¶&lt;/a&gt;&lt;/h2&gt;
 &lt;p&gt;定义一个配置文件，存放需要配置的信息。假设文件名为config.properties。&lt;/p&gt;
 &lt;div class="highlight"&gt;&lt;pre&gt;# email configuration #
@@ -289,4 +289,4 @@ system.email.pwd=ysw******
 &lt;div class="highlight"&gt;&lt;pre&gt;&lt;span class="n"&gt;PropertiesFactoryHelper&lt;/span&gt; &lt;span class="n"&gt;propeties&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="n"&gt;PropertiesFactoryHelper&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="na"&gt;getInstance&lt;/span&gt;&lt;span class="o"&gt;();&lt;/span&gt;
 
 &lt;span class="n"&gt;String&lt;/span&gt; &lt;span class="n"&gt;systemEmail&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="n"&gt;propeties&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="na"&gt;getConfig&lt;/span&gt;&lt;span class="o"&gt;(&lt;/span&gt;&lt;span class="s"&gt;"system.email"&lt;/span&gt;&lt;span class="o"&gt;);&lt;/span&gt;
-&lt;/pre&gt;&lt;/div&gt;</description><dc:creator xmlns:dc="http://purl.org/dc/elements/1.1/">sanwen</dc:creator><pubDate>Tue, 08 Apr 2014 00:00:00 +0800</pubDate><guid>tag:yinsanwen.github.io,2014-04-08:tips-in-javaweb.html</guid><category>properties</category></item></channel></rss>
+&lt;/pre&gt;&lt;/div&gt;</description><dc:creator xmlns:dc="http://purl.org/dc/elements/1.1/">sanwen</dc:creator><pubDate>Tue, 08 Apr 2014 00:00:00 +0800</pubDate><guid>tag:yinsanwen.github.io,2014-04-08:posts/2014/04/08/tips-in-javaweb.html</guid><category>properties</category></item></channel></rss>
