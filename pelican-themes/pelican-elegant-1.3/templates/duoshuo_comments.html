@@ -1,0 +1,27 @@
+{% if DUOSHUO_SITENAME and SITEURL and article.status != "draft" %}
+<section>
+{% if COMMENTS_INTRO %}
+<p id="comment-message">{{ COMMENTS_INTRO }} </p>
+{% endif %}
+<div class="accordion" id="accordion2">
+    <div class="accordion-group">
+        <div class="accordion-heading">
+            <a class="accordion-toggle duoshuo-comment-count" data-toggle="collapse" data-parent="#accordion2"
+                {% if article.disqus_identifier %}
+                    data-disqus-identifier="{{ article.disqus_identifier }}"
+                {% endif %}
+                href="{{ SITEURL }}/{{ article.url }}#disqus_thread">
+                <span class="ds-thread-count" data-thread-key="{{ article.url }}"></span>
+            </a>
+        </div>
+        <div id="disqus_thread" class="accordion-body collapse">
+            <div class="accordion-inner">
+                <div class="comments">
+                    {% include 'duoshuo_script_comment.html' %}
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+</section>
+{% endif %}

@@ -38,6 +38,9 @@ def reserve():
     build()
     serve()
 
+def deploy():
+    local('ghp-import output && git push origin gh-pages:master')
+
 def preview():
     local('pelican -s publishconf.py')
 

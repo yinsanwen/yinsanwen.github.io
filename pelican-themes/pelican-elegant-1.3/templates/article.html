@@ -39,6 +39,7 @@
 
             {{ article.content }}
             {% include 'comments.html' %}
+            {% include 'duoshuo_comments.html' %}
             <aside>
             <hr/>
             {% for an_article in dates %}
@@ -132,7 +133,9 @@
 
 {% block script %}
     {{ super() }}
-    {% include 'disqus_script_count.html' %}
+  {% include 'disqus_script_count.html' %}
+   <!-- {% include 'duoshuo_script_count.html' %}-->
+   <!--
     {% if DISQUS_SITENAME and SITEURL and article.status != "draft" %}
         <script  language="javascript" type="text/javascript">
             function uncollapse() {
@@ -151,4 +154,5 @@
             uncollapse(); 
         </script>
     {% endif %}
+    -->
 {% endblock script %}

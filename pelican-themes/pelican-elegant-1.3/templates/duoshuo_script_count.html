@@ -1,0 +1,18 @@
+{% if DUOSHUO_SITENAME and SITEURL and article.status != "draft" %}
+<script type="text/javascript">
+var duoshuoQuery = {short_name:"sanween"};
+duoshuoQuery.threads = {{article.url}}
+
+
+    (function() {
+     $.ajax({
+        url: "http://api.duoshuo.com/threads/counts.json",
+        data: duoshuoQuery,
+        success: function(data){
+            
+        },
+       dataType:json  
+     });
+            })();
+    </script>
+{% endif %}
