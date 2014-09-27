@@ -1,0 +1,202 @@
+<!DOCTYPE html>
+<html lang="en-US">
+    <head>
+        <meta charset="utf-8"> 
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <meta name="author" content="sanwen" />
+        <meta name="copyright" content="sanwen" />
+
+<meta name="keywords" content=", 建站, " />
+        <title>Pelican插件用法  · sanwen的博客
+</title>
+        <link href="http://cdn-images.mailchimp.com/embedcode/slim-081711.css" rel="stylesheet" type="text/css">
+        <link href="//netdna.bootstrapcdn.com/twitter-bootstrap/2.3.1/css/bootstrap-combined.min.css" rel="stylesheet">
+        <link rel="stylesheet" type="text/css" href="http://yinsanwen.github.io/theme/css/style.css" media="screen">
+        <link rel="stylesheet" type="text/css" href="http://yinsanwen.github.io/theme/css/solarizedlight.css" media="screen">
+        <link rel="shortcut icon" href="http://yinsanwen.github.io/theme/images/favicon.ico" type="image/x-icon" />
+        <link rel="apple-touch-icon" href="http://yinsanwen.github.io/theme/images/apple-touch-icon.png" />
+        <link rel="apple-touch-icon" sizes="57x57" href="http://yinsanwen.github.io/theme/images/apple-touch-icon-57x57.png" />
+        <link rel="apple-touch-icon" sizes="72x72" href="http://yinsanwen.github.io/theme/images/apple-touch-icon-72x72.png" />
+        <link rel="apple-touch-icon" sizes="114x114" href="http://yinsanwen.github.io/theme/images/apple-touch-icon-114x114.png" />
+        <link rel="apple-touch-icon" sizes="144x144" href="http://yinsanwen.github.io/theme/images/apple-touch-icon-144x144.png" />
+        <link rel="icon" href="http://yinsanwen.github.io/theme/images/apple-touch-icon-144x144.png" />
+    </head>
+    <body>
+        <div id="content-sans-footer">
+        <div class="navbar navbar-static-top">
+            <div class="navbar-inner">
+                <div class="container">
+                    <a class="btn btn-navbar" data-toggle="collapse" data-target=".nav-collapse">
+                        <span class="icon-bar"></span>
+                        <span class="icon-bar"></span>
+                        <span class="icon-bar"></span>
+                    </a>
+                    <a class="brand" href="http://yinsanwen.github.io/"><span class=site-name>sanwen的博客</span></a>
+                    <div class="nav-collapse collapse">
+                        <ul class="nav pull-right top-menu">
+                            <li ><a href="http://yinsanwen.github.io">Home</a></li>
+                            <li ><a href="http://yinsanwen.github.io/categories.html">Categories</a></li>
+                            <li ><a href="http://yinsanwen.github.io/tags.html">Tags</a></li>
+                            <li ><a href="http://yinsanwen.github.io/archives.html">Archives</a></li>
+                            <li><form class="navbar-search" action="http://yinsanwen.github.io/search.html" onsubmit="return validateForm(this.elements['q'].value);"> <input type="text" class="search-query" placeholder="Search" name="q" id="tipue_search_input"></form></li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="container-fluid">
+            <div class="row-fluid">
+                <div class="span1"></div>
+                <div class="span10">
+<article>
+<div class="row-fluid">
+    <header class="page_header span10 offset2">
+    <h1><a href="http://yinsanwen.github.io/posts/2014/08/19/pelican-plugins-usage.html"> Pelican插件用法  </a></h1>
+    </header>
+</div>
+
+<div class="row-fluid">
+    <div class="span2 table-of-content">
+        <nav>
+        <h4>Contents</h4>
+        <div class="toc">
+<ul>
+<li><a href="#pelican">安装Pelican插件</a></li>
+<li><a href="#pelican_1">使用Pelican插件</a><ul>
+<li><a href="#extract_toc">extract_toc</a></li>
+</ul>
+</li>
+</ul>
+</div>
+        </nav>
+    </div>
+    <div class="span8 article-content">
+
+            
+<h2 id="pelican">安装Pelican插件<a class="headerlink" href="#pelican" title="Permanent link">¶</a></h2>
+<p>下载Pelican插件，放在pelican-plugins目录中。</p>
+<div class="highlight"><pre>git clone https://github.com/getpelican/pelican-plugins
+</pre></div>
+<p>配置pelicanconf.py文件</p>
+<div class="highlight"><pre><span class="nv">PLUGIN_PATHS</span> <span class="o">=</span> <span class="o">[</span><span class="s1">'path/to/pelican-plugins'</span><span class="o">]</span>  <span class="c"># 插件的目录  </span>
+<span class="nv">PLUGINS</span> <span class="o">=</span> <span class="o">[</span><span class="s1">'assets'</span>, <span class="s1">'sitemap'</span>, <span class="s1">'gravatar'</span><span class="o">]</span> <span class="c"># 启用的插件列表</span>
+</pre></div>
+<hr/>
+<h2 id="pelican_1">使用Pelican插件<a class="headerlink" href="#pelican_1" title="Permanent link">¶</a></h2>
+<h3 id="extract_toc">extract_toc<a class="headerlink" href="#extract_toc" title="Permanent link">¶</a></h3>
+<p>extract_toc插件需要BeautifulSoup的支持</p>
+<div class="highlight"><pre>pip install beautifulsoup4
+</pre></div>
+<p>一、针对markdown编写的博客</p>
+<p>首先需要在配置文件里面设置</p>
+<div class="highlight"><pre><span class="n">MD_EXTENSIONS</span> <span class="o">=</span> <span class="p">([</span><span class="s">'toc'</span><span class="p">])</span>
+</pre></div>
+<p>然后在markdown文件(.md)的开头处添加[TOC]标记。如下所示</p>
+<div class="highlight"><pre>title: My super title
+date: 4-4-2013
+tags: thats, awesome
+
+<span class="o">[</span>TOC<span class="o">]</span>
+
+<span class="c"># Heading 1 #</span>
+
+Lorem ipsum dolor sit amet, consectetuer adipiscing elit. Aenean commodo ligula eget dolor. Aenean massa.
+</pre></div>
+<section>
+<div class="accordion" id="accordion2">
+    <div class="accordion-group">
+        <div class="accordion-heading">
+            <a class="accordion-toggle duoshuo-comment-count" data-toggle="collapse" data-parent="#accordion2"
+                href="http://yinsanwen.github.io/posts/2014/08/19/pelican-plugins-usage.html#disqus_thread">
+                <span class="ds-thread-count" data-thread-key="posts/2014/08/19/pelican-plugins-usage.html"></span>
+            </a>
+        </div>
+        <div id="disqus_thread" class="accordion-body collapse">
+            <div class="accordion-inner">
+                <div class="comments">
+<!-- 多说评论框 start -->
+<div class="ds-thread" data-thread-key="posts/2014/08/19/pelican-plugins-usage.html" data-title="Pelican插件用法" data-url="http://yinsanwen.github.io/posts/2014/08/19/pelican-plugins-usage.html"></div>    
+<!-- 多说评论框 end -->
+    <!-- 多说公共JS代码 start (一个网页只需插入一次) -->
+    <script type="text/javascript">
+    var duoshuoQuery = {short_name:"sanwenn"};
+    (function() {
+            var ds = document.createElement('script');
+                    ds.type = 'text/javascript';ds.async = true;
+                            ds.src = (document.location.protocol == 'https:' ? 'https:' : 'http:') + '//static.duoshuo.com/embed.js';
+                                    ds.charset = 'UTF-8';
+                                            (document.getElementsByTagName('head')[0] 
+                                                     || document.getElementsByTagName('body')[0]).appendChild(ds);
+                                                })();
+    </script>
+    <!-- 多说公共JS代码 end -->                </div>
+            </div>
+        </div>
+    </div>
+</div>
+</section>
+            <aside>
+            <hr/>
+            <nav>
+            <ul class="articles_timeline">
+ 
+                <li class="previous_article">« <a href="http://yinsanwen.github.io/posts/2014/07/21/using-dynamic-programing-in-string.html" title="Previous: 动态规划在字符串上的应用">动态规划在字符串上的应用</a></li>
+ 
+                <li class="next_article"><a href="http://yinsanwen.github.io/posts/2014/08/19/migrate-pelican-and-quickstart.html" title="Next: Pelican的迁移和快速开始">Pelican的迁移和快速开始</a> »</li>
+            </ul>
+            </nav>
+            </aside>
+        </div>
+        <section>
+        <div class="span2" style="float:right;font-size:0.9em;">
+ 
+            <h4>Published</h4>
+            <time pubdate="pubdate" datetime="2014-08-19T22:25:21.218328"> 8月 19, 2014</time>
+            <h4>Category</h4>
+            <a class="category-link" href="/categories.html#建站-ref">建站</a> 
+
+        </div>
+        </section>
+</div>
+</article>
+                </div>
+                <div class="span1"></div>
+            </div>
+        </div>
+    </div>
+<footer>
+<div id="footer">
+    <ul class="footer-content">
+        <li class="elegant-power">Powered by <a href="http://getpelican.com/" title="Pelican Home Page">Pelican</a>. Theme: <a href="http://oncrashreboot.com/pelican-elegant" title="Theme Elegant Home Page">Elegant</a> by <a href="http://oncrashreboot.com" title="Talha Mansoor Home Page">Talha Mansoor</a></li>
+    </ul>
+</div>
+</footer>           <script src="http://code.jquery.com/jquery.min.js"></script>
+       <script src="//netdna.bootstrapcdn.com/twitter-bootstrap/2.3.1/js/bootstrap.min.js"></script>
+        <script>
+            function validateForm(query)
+            {
+                return (query.length > 0);
+            }
+        </script>
+
+   <!-- <script type="text/javascript">
+var duoshuoQuery = {short_name:"sanween"};
+duoshuoQuery.threads = posts/2014/08/19/pelican-plugins-usage.html
+
+
+    (function() {
+     $.ajax({
+        url: "http://api.duoshuo.com/threads/counts.json",
+        data: duoshuoQuery,
+        success: function(data){
+            
+        },
+       dataType:json  
+     });
+            })();
+    </script>
+-->
+   <!--
+    -->
+    </body>
+</html>

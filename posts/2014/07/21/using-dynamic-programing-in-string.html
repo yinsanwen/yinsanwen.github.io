@@ -1,0 +1,299 @@
+<!DOCTYPE html>
+<html lang="en-US">
+    <head>
+        <meta charset="utf-8"> 
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <meta name="author" content="sanwen" />
+        <meta name="copyright" content="sanwen" />
+
+<meta name="keywords" content="动态规划, 算法, " />
+        <title>动态规划在字符串上的应用  · sanwen的博客
+</title>
+        <link href="http://cdn-images.mailchimp.com/embedcode/slim-081711.css" rel="stylesheet" type="text/css">
+        <link href="//netdna.bootstrapcdn.com/twitter-bootstrap/2.3.1/css/bootstrap-combined.min.css" rel="stylesheet">
+        <link rel="stylesheet" type="text/css" href="http://yinsanwen.github.io/theme/css/style.css" media="screen">
+        <link rel="stylesheet" type="text/css" href="http://yinsanwen.github.io/theme/css/solarizedlight.css" media="screen">
+        <link rel="shortcut icon" href="http://yinsanwen.github.io/theme/images/favicon.ico" type="image/x-icon" />
+        <link rel="apple-touch-icon" href="http://yinsanwen.github.io/theme/images/apple-touch-icon.png" />
+        <link rel="apple-touch-icon" sizes="57x57" href="http://yinsanwen.github.io/theme/images/apple-touch-icon-57x57.png" />
+        <link rel="apple-touch-icon" sizes="72x72" href="http://yinsanwen.github.io/theme/images/apple-touch-icon-72x72.png" />
+        <link rel="apple-touch-icon" sizes="114x114" href="http://yinsanwen.github.io/theme/images/apple-touch-icon-114x114.png" />
+        <link rel="apple-touch-icon" sizes="144x144" href="http://yinsanwen.github.io/theme/images/apple-touch-icon-144x144.png" />
+        <link rel="icon" href="http://yinsanwen.github.io/theme/images/apple-touch-icon-144x144.png" />
+    </head>
+    <body>
+        <div id="content-sans-footer">
+        <div class="navbar navbar-static-top">
+            <div class="navbar-inner">
+                <div class="container">
+                    <a class="btn btn-navbar" data-toggle="collapse" data-target=".nav-collapse">
+                        <span class="icon-bar"></span>
+                        <span class="icon-bar"></span>
+                        <span class="icon-bar"></span>
+                    </a>
+                    <a class="brand" href="http://yinsanwen.github.io/"><span class=site-name>sanwen的博客</span></a>
+                    <div class="nav-collapse collapse">
+                        <ul class="nav pull-right top-menu">
+                            <li ><a href="http://yinsanwen.github.io">Home</a></li>
+                            <li ><a href="http://yinsanwen.github.io/categories.html">Categories</a></li>
+                            <li ><a href="http://yinsanwen.github.io/tags.html">Tags</a></li>
+                            <li ><a href="http://yinsanwen.github.io/archives.html">Archives</a></li>
+                            <li><form class="navbar-search" action="http://yinsanwen.github.io/search.html" onsubmit="return validateForm(this.elements['q'].value);"> <input type="text" class="search-query" placeholder="Search" name="q" id="tipue_search_input"></form></li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="container-fluid">
+            <div class="row-fluid">
+                <div class="span1"></div>
+                <div class="span10">
+<article>
+<div class="row-fluid">
+    <header class="page_header span10 offset2">
+    <h1><a href="http://yinsanwen.github.io/posts/2014/07/21/using-dynamic-programing-in-string.html"> 动态规划在字符串上的应用  </a></h1>
+    </header>
+</div>
+
+<div class="row-fluid">
+        <div class="span8 offset2 article-content">
+
+            <h1 id="_1">动态规划在字符串上的应用<a class="headerlink" href="#_1" title="Permanent link">&para;</a></h1>
+<blockquote>
+<p>动态规划可以解决一系列的字符串问题，下面总结了一些动态规划在字符串上的常见应用。</p>
+</blockquote>
+<hr />
+<h2 id="sub-string">最长公共子串（sub-string）<a class="headerlink" href="#sub-string" title="Permanent link">&para;</a></h2>
+<p>求两个字符串的最长公共子串（连续的子串）。我们首先想到的应该是循环一个字符串，查找其中以每个字符开头的最长子串。在这之中，会有很多重复的计算过程。我们考虑使用动态规划来解决这个问题。</p>
+<p>基本思路是：
+两个字符串X，Y。长度分别为m，n。利用一个中间表L[m+1][n+1]。L[i][j]表示以Xi(Xi表示字符串X的第i个元素，非下标，下同)和Yj结尾的最长公共子串。那么我们就可以得到<strong>状态转移方程</strong>。</p>
+<p>$$
+L[i][j] = \begin{cases}
+L[i-1][j-1] + 1 &amp; X_i = Y_j \
+0 &amp; X_i &lt;&gt; Y_j \end{cases}
+$$
+如果Xi和Yi相等，则以Xi和Yj结尾的公共子串的长度为以$X_{i-1}$和$Y_{j-1}$结尾的公共子串的长度加1。如果不然，显然，结果为0。</p>
+<p>有了状态转移方程，就好写动态规划算法了。</p>
+<div class="highlight"><pre>    <span class="kd">public</span> <span class="n">String</span> <span class="nf">LCSubStr</span><span class="o">(</span><span class="kt">char</span><span class="o">[]</span> <span class="n">X</span><span class="o">,</span> <span class="kt">char</span><span class="o">[]</span> <span class="n">Y</span><span class="o">){</span>
+        <span class="kt">int</span> <span class="n">length</span> <span class="o">=</span> <span class="mi">0</span><span class="o">;</span>         <span class="c1">//记录最长子串的长度</span>
+        <span class="kt">int</span> <span class="n">endX</span> <span class="o">=</span> <span class="mi">0</span><span class="o">;</span>           <span class="c1">//记录在X字符串中的结束位置</span>
+        <span class="c1">//中间矩阵L</span>
+        <span class="c1">//L[i][j]表示已Xi和Yj为结尾的相同子串的最大长度。</span>
+        <span class="c1">//i,j不表示下标，表示第i,j个元素。</span>
+        <span class="kt">int</span><span class="o">[][]</span> <span class="n">L</span> <span class="o">=</span> <span class="k">new</span> <span class="kt">int</span><span class="o">[</span><span class="n">X</span><span class="o">.</span><span class="na">length</span><span class="o">+</span><span class="mi">1</span><span class="o">][</span><span class="n">Y</span><span class="o">.</span><span class="na">length</span><span class="o">+</span><span class="mi">1</span><span class="o">];</span>
+        <span class="k">for</span><span class="o">(</span><span class="kt">int</span> <span class="n">i</span> <span class="o">=</span> <span class="mi">0</span><span class="o">;</span> <span class="n">i</span> <span class="o">&lt;</span> <span class="n">X</span><span class="o">.</span><span class="na">length</span><span class="o">+</span><span class="mi">1</span><span class="o">;</span> <span class="n">i</span><span class="o">++){</span>
+            <span class="n">L</span><span class="o">[</span><span class="n">i</span><span class="o">][</span><span class="mi">0</span><span class="o">]</span> <span class="o">=</span> <span class="mi">0</span><span class="o">;</span>
+        <span class="o">}</span>
+        <span class="k">for</span><span class="o">(</span><span class="kt">int</span> <span class="n">i</span> <span class="o">=</span> <span class="mi">0</span><span class="o">;</span> <span class="n">i</span><span class="o">&lt;</span> <span class="n">Y</span><span class="o">.</span><span class="na">length</span><span class="o">+</span><span class="mi">1</span><span class="o">;</span> <span class="n">i</span><span class="o">++){</span>
+            <span class="n">L</span><span class="o">[</span><span class="mi">0</span><span class="o">][</span><span class="n">i</span><span class="o">]</span> <span class="o">=</span> <span class="mi">0</span><span class="o">;</span>
+        <span class="o">}</span>
+        <span class="k">for</span><span class="o">(</span><span class="kt">int</span> <span class="n">i</span> <span class="o">=</span> <span class="mi">1</span><span class="o">;</span> <span class="n">i</span> <span class="o">&lt;</span> <span class="n">X</span><span class="o">.</span><span class="na">length</span><span class="o">+</span><span class="mi">1</span><span class="o">;</span> <span class="n">i</span><span class="o">++){</span>
+            <span class="k">for</span><span class="o">(</span><span class="kt">int</span> <span class="n">j</span> <span class="o">=</span> <span class="mi">1</span><span class="o">;</span> <span class="n">j</span> <span class="o">&lt;</span> <span class="n">Y</span><span class="o">.</span><span class="na">length</span><span class="o">+</span> <span class="mi">1</span><span class="o">;</span> <span class="n">j</span><span class="o">++){</span>
+                <span class="k">if</span><span class="o">(</span><span class="n">X</span><span class="o">[</span><span class="n">i</span><span class="o">-</span><span class="mi">1</span><span class="o">]</span> <span class="o">==</span> <span class="n">Y</span><span class="o">[</span><span class="n">j</span><span class="o">-</span><span class="mi">1</span><span class="o">]){</span>
+                    <span class="n">L</span><span class="o">[</span><span class="n">i</span><span class="o">][</span><span class="n">j</span><span class="o">]</span> <span class="o">=</span> <span class="n">L</span><span class="o">[</span><span class="n">i</span><span class="o">-</span><span class="mi">1</span><span class="o">][</span><span class="n">j</span><span class="o">-</span><span class="mi">1</span><span class="o">]</span> <span class="o">+</span> <span class="mi">1</span><span class="o">;</span>
+                    <span class="k">if</span><span class="o">(</span><span class="n">L</span><span class="o">[</span><span class="n">i</span><span class="o">][</span><span class="n">j</span><span class="o">]</span> <span class="o">&gt;</span> <span class="n">length</span><span class="o">){</span>
+                        <span class="n">endX</span> <span class="o">=</span> <span class="n">i</span><span class="o">-</span><span class="mi">1</span><span class="o">;</span>
+                        <span class="n">length</span> <span class="o">=</span> <span class="n">L</span><span class="o">[</span><span class="n">i</span><span class="o">][</span><span class="n">j</span><span class="o">];</span>
+                    <span class="o">}</span>
+                <span class="o">}</span><span class="k">else</span><span class="o">{</span>
+                    <span class="n">L</span><span class="o">[</span><span class="n">i</span><span class="o">][</span><span class="n">j</span><span class="o">]</span> <span class="o">=</span> <span class="mi">0</span><span class="o">;</span>
+                <span class="o">}</span>
+            <span class="o">}</span>
+        <span class="o">}</span>
+        <span class="k">if</span><span class="o">(</span><span class="n">length</span> <span class="o">==</span> <span class="mi">0</span><span class="o">)</span><span class="k">return</span> <span class="s">&quot;&quot;</span><span class="o">;</span>
+
+        <span class="n">StringBuffer</span> <span class="n">sb</span> <span class="o">=</span> <span class="k">new</span> <span class="n">StringBuffer</span><span class="o">();</span>
+        <span class="k">for</span><span class="o">(</span><span class="kt">int</span> <span class="n">i</span> <span class="o">=</span> <span class="o">(</span><span class="n">endX</span><span class="o">-</span><span class="n">length</span><span class="o">+</span><span class="mi">1</span><span class="o">);</span> <span class="n">i</span> <span class="o">&lt;=</span> <span class="n">endX</span><span class="o">;</span> <span class="n">i</span><span class="o">++)</span>
+            <span class="n">sb</span><span class="o">.</span><span class="na">append</span><span class="o">(</span><span class="n">X</span><span class="o">[</span><span class="n">i</span><span class="o">]);</span>
+        <span class="k">return</span> <span class="n">sb</span><span class="o">.</span><span class="na">toString</span><span class="o">();</span>
+    <span class="o">}</span>
+</pre></div>
+
+
+<p>上面的代码在空间复杂度上面仍有改进的空间。因为我们的最外层循环是一行一行的处理，处理每一行时，只需要上一行的信息。因此我们没有必要使用$O(n^2)$的空间。只需要存储当前处理行的上一行即可。将空间复杂度将为$O(n)$。</p>
+<div class="highlight"><pre><span class="kd">static</span> <span class="n">String</span> <span class="nf">longestSubString</span><span class="o">(</span><span class="n">String</span> <span class="n">str1</span><span class="o">,</span> <span class="n">String</span> <span class="n">str2</span><span class="o">){</span>
+    <span class="c1">//只需要两行的内存空间</span>
+    <span class="kt">int</span><span class="o">[]</span> <span class="n">preLine</span> <span class="o">=</span> <span class="k">new</span> <span class="kt">int</span><span class="o">[</span><span class="n">str2</span><span class="o">.</span><span class="na">length</span><span class="o">()</span> <span class="o">+</span> <span class="mi">1</span><span class="o">];</span>
+    <span class="kt">int</span><span class="o">[]</span> <span class="n">curLine</span> <span class="o">=</span> <span class="k">new</span> <span class="kt">int</span><span class="o">[</span><span class="n">str2</span><span class="o">.</span><span class="na">length</span><span class="o">()</span> <span class="o">+</span> <span class="mi">1</span><span class="o">];</span>
+    <span class="c1">//记录最长公共子串的长度和结束位置</span>
+    <span class="kt">int</span> <span class="n">longestLength</span> <span class="o">=</span> <span class="o">-</span><span class="mi">1</span><span class="o">,</span> <span class="n">str1EndPoint</span> <span class="o">=</span> <span class="o">-</span><span class="mi">1</span><span class="o">;</span>
+    <span class="k">for</span><span class="o">(</span><span class="kt">int</span> <span class="n">i</span> <span class="o">=</span> <span class="mi">0</span><span class="o">;</span> <span class="n">i</span> <span class="o">&lt;</span> <span class="n">str2</span><span class="o">.</span><span class="na">length</span><span class="o">()</span> <span class="o">+</span> <span class="mi">1</span><span class="o">;</span> <span class="n">i</span><span class="o">++)</span><span class="n">preLine</span><span class="o">[</span><span class="n">i</span><span class="o">]</span> <span class="o">=</span> <span class="mi">0</span><span class="o">;</span>
+    <span class="k">for</span><span class="o">(</span><span class="kt">int</span> <span class="n">i</span> <span class="o">=</span> <span class="mi">0</span><span class="o">;</span> <span class="n">i</span> <span class="o">&lt;</span> <span class="n">str1</span><span class="o">.</span><span class="na">length</span><span class="o">();</span> <span class="n">i</span><span class="o">++){</span>
+        <span class="n">curLine</span><span class="o">[</span><span class="mi">0</span><span class="o">]</span> <span class="o">=</span> <span class="mi">0</span><span class="o">;</span>
+        <span class="k">for</span><span class="o">(</span><span class="kt">int</span> <span class="n">j</span> <span class="o">=</span> <span class="mi">0</span><span class="o">;</span> <span class="n">j</span> <span class="o">&lt;</span> <span class="n">str2</span><span class="o">.</span><span class="na">length</span><span class="o">();</span> <span class="n">j</span><span class="o">++){</span>
+            <span class="k">if</span><span class="o">(</span><span class="n">str1</span><span class="o">.</span><span class="na">charAt</span><span class="o">(</span><span class="n">i</span><span class="o">)</span> <span class="o">==</span> <span class="n">str2</span><span class="o">.</span><span class="na">charAt</span><span class="o">(</span><span class="n">j</span><span class="o">)){</span>
+                <span class="n">curLine</span><span class="o">[</span><span class="n">j</span> <span class="o">+</span> <span class="mi">1</span><span class="o">]</span> <span class="o">=</span> <span class="n">preLine</span><span class="o">[</span><span class="n">j</span><span class="o">]</span> <span class="o">+</span> <span class="mi">1</span><span class="o">;</span>
+                <span class="k">if</span><span class="o">(</span><span class="n">curLine</span><span class="o">[</span><span class="n">j</span> <span class="o">+</span> <span class="mi">1</span><span class="o">]</span> <span class="o">&gt;</span> <span class="n">longestLength</span><span class="o">){</span>
+                    <span class="n">longestLength</span> <span class="o">=</span> <span class="n">curLine</span><span class="o">[</span><span class="n">j</span><span class="o">+</span><span class="mi">1</span><span class="o">];</span>
+                    <span class="n">str1EndPoint</span> <span class="o">=</span> <span class="n">i</span><span class="o">;</span>
+                <span class="o">}</span>
+            <span class="o">}</span><span class="k">else</span>
+                <span class="n">curLine</span><span class="o">[</span><span class="n">j</span> <span class="o">+</span> <span class="mi">1</span><span class="o">]</span> <span class="o">=</span> <span class="mi">0</span><span class="o">;</span>
+        <span class="o">}</span>
+        <span class="c1">//将当前行变为上一行，为下次循环做准备</span>
+        <span class="kt">int</span><span class="o">[]</span> <span class="n">tmp</span> <span class="o">=</span> <span class="n">preLine</span><span class="o">;</span>
+        <span class="n">preLine</span> <span class="o">=</span> <span class="n">curLine</span><span class="o">;</span>
+        <span class="n">curLine</span> <span class="o">=</span> <span class="n">tmp</span><span class="o">;</span>
+    <span class="o">}</span>
+    <span class="k">return</span> <span class="n">str1</span><span class="o">.</span><span class="na">substring</span><span class="o">(</span><span class="n">str1EndPoint</span> <span class="o">-</span> <span class="n">longestLength</span> <span class="o">+</span> <span class="mi">1</span><span class="o">,</span> <span class="n">str1EndPoint</span> <span class="o">+</span> <span class="mi">1</span><span class="o">);</span>
+<span class="o">}</span>
+</pre></div>
+
+
+<h2 id="lcslongest-common-subsequence">最长公共子序列LCS（Longest Common Subsequence）<a class="headerlink" href="#lcslongest-common-subsequence" title="Permanent link">&para;</a></h2>
+<h2 id="shortest-edit-path">最短编辑距离(Shortest Edit Path)<a class="headerlink" href="#shortest-edit-path" title="Permanent link">&para;</a></h2>
+<p>计算字符串a和字符串b的编辑距离，假设a长度为i，表示为a[1...i]；b长度为j，表示为b[1...j]。
+考虑可操作的三种情况：
+1. 插入：在字符串a的后面插入一个字符，使得和b字符串相等。
+这一前提条件是a[1...i]和b[1...j-1]相等。
+2. 删除：删除字符串a最后面的一个字符，使得和b字符串相等。
+这一前提条件是a[1...i-1]和b[1...j]相等。
+3. 替换：替换字符串a最后面的一个字符，使得和b字符串相等。
+这一前提条件是a[1...i-1]和b[1...j-1]相等。</p>
+<p>这里面涉及到子问题的最优解，适用于动态规划算法。
+假设F[i,j]表示字符串A的前i位，和字符串B的前j位的最短编辑距离，则根据上面的分析，在上面三种情况中选择计算结果最小的值就是F[i,j]的值。有
+$$ F[i,j] = min \begin{cases}
+F[i][j-1]+1 &amp; 插入 \
+F[i-1][j]+1 &amp; 删除 \
+F[i-1][j-1] + \begin{cases}0 &amp; A[i]=B[j] \ 1 &amp; A[i] != B[j] \end{cases} &amp; 替换
+\end{cases}
+$$</p>
+<p>程序代码如下：</p>
+<div class="highlight"><pre>    <span class="kd">public</span> <span class="kd">static</span> <span class="kt">int</span> <span class="nf">shortestEditPath</span><span class="o">(</span><span class="n">String</span> <span class="n">A</span><span class="o">,</span> <span class="n">String</span> <span class="n">B</span><span class="o">){</span>
+        <span class="kt">int</span> <span class="n">aLen</span> <span class="o">=</span> <span class="n">A</span><span class="o">.</span><span class="na">length</span><span class="o">(),</span> <span class="n">bLen</span> <span class="o">=</span> <span class="n">B</span><span class="o">.</span><span class="na">length</span><span class="o">();</span>
+        <span class="kt">int</span><span class="o">[][]</span> <span class="n">F</span> <span class="o">=</span> <span class="k">new</span> <span class="kt">int</span><span class="o">[</span><span class="n">aLen</span><span class="o">+</span><span class="mi">1</span><span class="o">][</span><span class="n">bLen</span><span class="o">+</span><span class="mi">1</span><span class="o">];</span>
+
+        <span class="c1">//初始化:有F[0][j] = j; F[i][0] = i;</span>
+        <span class="k">for</span><span class="o">(</span><span class="kt">int</span> <span class="n">i</span> <span class="o">=</span> <span class="mi">0</span><span class="o">;</span> <span class="n">i</span> <span class="o">&lt;=</span> <span class="n">aLen</span><span class="o">;</span> <span class="n">i</span><span class="o">++){</span>
+            <span class="n">F</span><span class="o">[</span><span class="n">i</span><span class="o">][</span><span class="mi">0</span><span class="o">]</span> <span class="o">=</span> <span class="n">i</span><span class="o">;</span>
+        <span class="o">}</span>
+        <span class="k">for</span><span class="o">(</span><span class="kt">int</span> <span class="n">j</span> <span class="o">=</span> <span class="mi">0</span><span class="o">;</span> <span class="n">j</span> <span class="o">&lt;=</span> <span class="n">bLen</span><span class="o">;</span> <span class="n">j</span><span class="o">++){</span>
+            <span class="n">F</span><span class="o">[</span><span class="mi">0</span><span class="o">][</span><span class="n">j</span><span class="o">]</span> <span class="o">=</span> <span class="n">j</span><span class="o">;</span>
+        <span class="o">}</span>
+
+        <span class="k">for</span><span class="o">(</span><span class="kt">int</span> <span class="n">i</span> <span class="o">=</span> <span class="mi">1</span><span class="o">;</span> <span class="n">i</span> <span class="o">&lt;=</span> <span class="n">aLen</span><span class="o">;</span> <span class="n">i</span><span class="o">++){</span>
+            <span class="k">for</span><span class="o">(</span><span class="kt">int</span> <span class="n">j</span> <span class="o">=</span> <span class="mi">1</span><span class="o">;</span> <span class="n">j</span> <span class="o">&lt;=</span> <span class="n">bLen</span><span class="o">;</span> <span class="n">j</span><span class="o">++){</span>
+                <span class="c1">//三种操作各自所需的最短距离</span>
+                <span class="kt">int</span> <span class="n">insertDis</span> <span class="o">=</span> <span class="n">F</span><span class="o">[</span><span class="n">i</span><span class="o">][</span><span class="n">j</span><span class="o">-</span><span class="mi">1</span><span class="o">]</span> <span class="o">+</span> <span class="mi">1</span><span class="o">;</span>
+                <span class="kt">int</span> <span class="n">deleteDis</span> <span class="o">=</span> <span class="n">F</span><span class="o">[</span><span class="n">i</span><span class="o">-</span><span class="mi">1</span><span class="o">][</span><span class="n">j</span><span class="o">]</span> <span class="o">+</span> <span class="mi">1</span><span class="o">;</span>
+                <span class="kt">int</span> <span class="n">subsitWeight</span> <span class="o">=</span> <span class="n">A</span><span class="o">.</span><span class="na">charAt</span><span class="o">(</span><span class="n">i</span><span class="o">-</span><span class="mi">1</span><span class="o">)</span> <span class="o">==</span> <span class="n">B</span><span class="o">.</span><span class="na">charAt</span><span class="o">(</span><span class="n">j</span><span class="o">-</span><span class="mi">1</span><span class="o">)</span> <span class="o">?</span> <span class="mi">0</span> <span class="o">:</span> <span class="mi">1</span><span class="o">;</span>
+                <span class="kt">int</span> <span class="n">subsitDis</span> <span class="o">=</span> <span class="n">F</span><span class="o">[</span><span class="n">i</span><span class="o">-</span><span class="mi">1</span><span class="o">][</span><span class="n">j</span><span class="o">-</span><span class="mi">1</span><span class="o">]</span> <span class="o">+</span> <span class="n">subsitWeight</span><span class="o">;</span>
+                <span class="c1">//取最小值</span>
+                <span class="kt">int</span> <span class="n">min</span> <span class="o">=</span> <span class="n">insertDis</span> <span class="o">&lt;</span> <span class="n">deleteDis</span> <span class="o">?</span> <span class="n">insertDis</span> <span class="o">:</span> <span class="n">deleteDis</span><span class="o">;</span>
+                <span class="k">if</span><span class="o">(</span><span class="n">subsitDis</span> <span class="o">&lt;</span> <span class="n">min</span> <span class="o">)</span> <span class="n">min</span> <span class="o">=</span> <span class="n">subsitDis</span><span class="o">;</span>
+                <span class="n">F</span><span class="o">[</span><span class="n">i</span><span class="o">][</span><span class="n">j</span><span class="o">]</span> <span class="o">=</span> <span class="n">min</span><span class="o">;</span>
+            <span class="o">}</span>
+        <span class="o">}</span>
+        <span class="k">return</span> <span class="n">F</span><span class="o">[</span><span class="n">aLen</span><span class="o">][</span><span class="n">bLen</span><span class="o">];</span>
+
+    <span class="o">}</span>
+</pre></div>
+
+
+<blockquote>
+<p>Written with <a href="https://stackedit.io/">StackEdit</a>.</p>
+</blockquote>
+<section>
+<div class="accordion" id="accordion2">
+    <div class="accordion-group">
+        <div class="accordion-heading">
+            <a class="accordion-toggle duoshuo-comment-count" data-toggle="collapse" data-parent="#accordion2"
+                href="http://yinsanwen.github.io/posts/2014/07/21/using-dynamic-programing-in-string.html#disqus_thread">
+                <span class="ds-thread-count" data-thread-key="posts/2014/07/21/using-dynamic-programing-in-string.html"></span>
+            </a>
+        </div>
+        <div id="disqus_thread" class="accordion-body collapse">
+            <div class="accordion-inner">
+                <div class="comments">
+<!-- 多说评论框 start -->
+<div class="ds-thread" data-thread-key="posts/2014/07/21/using-dynamic-programing-in-string.html" data-title="动态规划在字符串上的应用" data-url="http://yinsanwen.github.io/posts/2014/07/21/using-dynamic-programing-in-string.html"></div>    
+<!-- 多说评论框 end -->
+    <!-- 多说公共JS代码 start (一个网页只需插入一次) -->
+    <script type="text/javascript">
+    var duoshuoQuery = {short_name:"sanwenn"};
+    (function() {
+            var ds = document.createElement('script');
+                    ds.type = 'text/javascript';ds.async = true;
+                            ds.src = (document.location.protocol == 'https:' ? 'https:' : 'http:') + '//static.duoshuo.com/embed.js';
+                                    ds.charset = 'UTF-8';
+                                            (document.getElementsByTagName('head')[0] 
+                                                     || document.getElementsByTagName('body')[0]).appendChild(ds);
+                                                })();
+    </script>
+    <!-- 多说公共JS代码 end -->                </div>
+            </div>
+        </div>
+    </div>
+</div>
+</section>
+            <aside>
+            <hr/>
+            <nav>
+            <ul class="articles_timeline">
+ 
+                <li class="previous_article">« <a href="http://yinsanwen.github.io/posts/2014/06/13/24dian-jisuan.html" title="Previous: 24点算法的JAVA实现">24点算法的JAVA实现</a></li>
+ 
+                <li class="next_article"><a href="http://yinsanwen.github.io/posts/2014/08/19/pelican-plugins-usage.html" title="Next: Pelican插件用法">Pelican插件用法</a> »</li>
+            </ul>
+            </nav>
+            </aside>
+        </div>
+        <section>
+        <div class="span2" style="float:right;font-size:0.9em;">
+ 
+            <h4>Published</h4>
+            <time pubdate="pubdate" datetime="2014-07-21T18:43:00"> 7月 21, 2014</time>
+            <h4>Category</h4>
+            <a class="category-link" href="/categories.html#算法-ref">算法</a> 
+            <h4>Tags</h4>
+            <ul class="list-of-tags tags-in-article"> 
+                <li><a href="/tags.html#动态规划-ref">动态规划
+                    <span>2</span>
+</a></li>
+            </ul>
+
+        </div>
+        </section>
+</div>
+</article>
+                </div>
+                <div class="span1"></div>
+            </div>
+        </div>
+    </div>
+<footer>
+<div id="footer">
+    <ul class="footer-content">
+        <li class="elegant-power">Powered by <a href="http://getpelican.com/" title="Pelican Home Page">Pelican</a>. Theme: <a href="http://oncrashreboot.com/pelican-elegant" title="Theme Elegant Home Page">Elegant</a> by <a href="http://oncrashreboot.com" title="Talha Mansoor Home Page">Talha Mansoor</a></li>
+    </ul>
+</div>
+</footer>           <script src="http://code.jquery.com/jquery.min.js"></script>
+       <script src="//netdna.bootstrapcdn.com/twitter-bootstrap/2.3.1/js/bootstrap.min.js"></script>
+        <script>
+            function validateForm(query)
+            {
+                return (query.length > 0);
+            }
+        </script>
+
+   <!-- <script type="text/javascript">
+var duoshuoQuery = {short_name:"sanween"};
+duoshuoQuery.threads = posts/2014/07/21/using-dynamic-programing-in-string.html
+
+
+    (function() {
+     $.ajax({
+        url: "http://api.duoshuo.com/threads/counts.json",
+        data: duoshuoQuery,
+        success: function(data){
+            
+        },
+       dataType:json  
+     });
+            })();
+    </script>
+-->
+   <!--
+    -->
+    </body>
+</html>

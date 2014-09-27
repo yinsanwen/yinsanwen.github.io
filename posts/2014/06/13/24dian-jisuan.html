@@ -1,0 +1,282 @@
+<!DOCTYPE html>
+<html lang="en-US">
+    <head>
+        <meta charset="utf-8"> 
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <meta name="author" content="sanwen" />
+        <meta name="copyright" content="sanwen" />
+
+<meta name="keywords" content="递归 穷举, 算法, " />
+        <title>24点算法的JAVA实现  · sanwen的博客
+</title>
+        <link href="http://cdn-images.mailchimp.com/embedcode/slim-081711.css" rel="stylesheet" type="text/css">
+        <link href="//netdna.bootstrapcdn.com/twitter-bootstrap/2.3.1/css/bootstrap-combined.min.css" rel="stylesheet">
+        <link rel="stylesheet" type="text/css" href="http://yinsanwen.github.io/theme/css/style.css" media="screen">
+        <link rel="stylesheet" type="text/css" href="http://yinsanwen.github.io/theme/css/solarizedlight.css" media="screen">
+        <link rel="shortcut icon" href="http://yinsanwen.github.io/theme/images/favicon.ico" type="image/x-icon" />
+        <link rel="apple-touch-icon" href="http://yinsanwen.github.io/theme/images/apple-touch-icon.png" />
+        <link rel="apple-touch-icon" sizes="57x57" href="http://yinsanwen.github.io/theme/images/apple-touch-icon-57x57.png" />
+        <link rel="apple-touch-icon" sizes="72x72" href="http://yinsanwen.github.io/theme/images/apple-touch-icon-72x72.png" />
+        <link rel="apple-touch-icon" sizes="114x114" href="http://yinsanwen.github.io/theme/images/apple-touch-icon-114x114.png" />
+        <link rel="apple-touch-icon" sizes="144x144" href="http://yinsanwen.github.io/theme/images/apple-touch-icon-144x144.png" />
+        <link rel="icon" href="http://yinsanwen.github.io/theme/images/apple-touch-icon-144x144.png" />
+    </head>
+    <body>
+        <div id="content-sans-footer">
+        <div class="navbar navbar-static-top">
+            <div class="navbar-inner">
+                <div class="container">
+                    <a class="btn btn-navbar" data-toggle="collapse" data-target=".nav-collapse">
+                        <span class="icon-bar"></span>
+                        <span class="icon-bar"></span>
+                        <span class="icon-bar"></span>
+                    </a>
+                    <a class="brand" href="http://yinsanwen.github.io/"><span class=site-name>sanwen的博客</span></a>
+                    <div class="nav-collapse collapse">
+                        <ul class="nav pull-right top-menu">
+                            <li ><a href="http://yinsanwen.github.io">Home</a></li>
+                            <li ><a href="http://yinsanwen.github.io/categories.html">Categories</a></li>
+                            <li ><a href="http://yinsanwen.github.io/tags.html">Tags</a></li>
+                            <li ><a href="http://yinsanwen.github.io/archives.html">Archives</a></li>
+                            <li><form class="navbar-search" action="http://yinsanwen.github.io/search.html" onsubmit="return validateForm(this.elements['q'].value);"> <input type="text" class="search-query" placeholder="Search" name="q" id="tipue_search_input"></form></li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="container-fluid">
+            <div class="row-fluid">
+                <div class="span1"></div>
+                <div class="span10">
+<article>
+<div class="row-fluid">
+    <header class="page_header span10 offset2">
+    <h1><a href="http://yinsanwen.github.io/posts/2014/06/13/24dian-jisuan.html"> 24点算法的JAVA实现  </a></h1>
+    </header>
+</div>
+
+<div class="row-fluid">
+        <div class="span8 offset2 article-content">
+
+            <blockquote>
+<p>给定N个数,问能否通过<code>+ - * /</code>和括号<code>()</code>,使得计算结果等于24.</p>
+</blockquote>
+<h4 id="_1">算法思路<a class="headerlink" href="#_1" title="Permanent link">&para;</a></h4>
+<p>最常见的是使用穷举法,步骤如下:
+① 从数组A[1..N]的N个数中选取两个数, 有C(N,2)中可能.
+② 被选择的这两个数进行各种可能的运算:加法和乘法没有顺序,加法和除法有顺序.最多可以有6钟计算结果.
+③ 将参与运算的两个数移除,并将计算结果放入数组A中.然后递归调用①.</p>
+<p><strong>注意:</strong> 在步骤①进行循环时,因为每次选择的两个数不一定正确,所以应该在第二步之前保存选择的数.并在下次循环之前恢复数组A.</p>
+<hr />
+<p>源码如下:</p>
+<div class="highlight"><pre><span class="kn">import</span> <span class="nn">java.util.Scanner</span><span class="o">;</span>
+
+<span class="kd">public</span> <span class="kd">class</span> <span class="nc">TwentyFour</span> <span class="o">{</span>
+    <span class="cm">/**</span>
+<span class="cm">     * 数组A的前n个数能否24点计算成功</span>
+<span class="cm">     * @param A</span>
+<span class="cm">     * @param n</span>
+<span class="cm">     */</span>
+    <span class="kd">public</span> <span class="kd">static</span> <span class="kt">boolean</span> <span class="nf">twentyFour</span><span class="o">(</span><span class="kt">double</span> <span class="n">A</span><span class="o">[],</span> <span class="kt">int</span> <span class="n">n</span><span class="o">,</span> <span class="n">String</span><span class="o">[]</span> <span class="n">exp</span><span class="o">){</span>
+        <span class="k">if</span><span class="o">(</span><span class="n">n</span> <span class="o">==</span> <span class="mi">1</span><span class="o">){</span>
+            <span class="k">if</span><span class="o">(</span><span class="n">A</span><span class="o">[</span><span class="mi">0</span><span class="o">]</span> <span class="o">==</span> <span class="mf">24.0</span><span class="o">){</span>
+                <span class="k">return</span> <span class="kc">true</span><span class="o">;</span>
+            <span class="o">}</span><span class="k">else</span> <span class="o">{</span>
+                <span class="k">return</span> <span class="kc">false</span><span class="o">;</span>
+            <span class="o">}</span>
+        <span class="o">}</span>
+        <span class="kt">double</span> <span class="n">a</span><span class="o">,</span><span class="n">b</span><span class="o">;</span>
+        <span class="n">String</span> <span class="n">expa</span><span class="o">,</span><span class="n">expb</span><span class="o">;</span>
+
+        <span class="k">for</span><span class="o">(</span><span class="kt">int</span> <span class="n">i</span> <span class="o">=</span> <span class="mi">0</span><span class="o">;</span> <span class="n">i</span> <span class="o">&lt;</span> <span class="n">n</span><span class="o">;</span> <span class="n">i</span><span class="o">++){</span>
+            <span class="k">for</span><span class="o">(</span><span class="kt">int</span> <span class="n">j</span> <span class="o">=</span> <span class="n">i</span><span class="o">+</span><span class="mi">1</span><span class="o">;</span> <span class="n">j</span> <span class="o">&lt;</span> <span class="n">n</span><span class="o">;</span> <span class="n">j</span><span class="o">++){</span>
+                <span class="c1">//计算A[i]和A[j]的所有可能</span>
+
+                <span class="n">a</span> <span class="o">=</span> <span class="n">A</span><span class="o">[</span><span class="n">i</span><span class="o">];</span>
+                <span class="n">b</span> <span class="o">=</span> <span class="n">A</span><span class="o">[</span><span class="n">j</span><span class="o">];</span>
+                <span class="n">expa</span> <span class="o">=</span> <span class="n">exp</span><span class="o">[</span><span class="n">i</span><span class="o">];</span>
+                <span class="n">expb</span> <span class="o">=</span> <span class="n">exp</span><span class="o">[</span><span class="n">j</span><span class="o">];</span>
+
+                <span class="n">A</span><span class="o">[</span><span class="n">j</span><span class="o">]</span> <span class="o">=</span> <span class="n">A</span><span class="o">[</span><span class="n">n</span><span class="o">-</span><span class="mi">1</span><span class="o">];</span>
+                <span class="n">exp</span><span class="o">[</span><span class="n">j</span><span class="o">]</span> <span class="o">=</span> <span class="n">exp</span><span class="o">[</span><span class="n">n</span><span class="o">-</span><span class="mi">1</span><span class="o">];</span>
+
+                <span class="c1">//①相加再判断</span>
+                <span class="n">A</span><span class="o">[</span><span class="n">i</span><span class="o">]</span> <span class="o">=</span> <span class="n">a</span> <span class="o">+</span> <span class="n">b</span><span class="o">;</span>
+                <span class="n">exp</span><span class="o">[</span><span class="n">i</span><span class="o">]</span> <span class="o">=</span> <span class="s">&quot;(&quot;</span> <span class="o">+</span> <span class="n">expa</span> <span class="o">+</span> <span class="s">&quot; + &quot;</span> <span class="o">+</span> <span class="n">expb</span> <span class="o">+</span> <span class="s">&quot;)&quot;</span><span class="o">;</span>
+                <span class="k">if</span><span class="o">(</span><span class="n">twentyFour</span><span class="o">(</span><span class="n">A</span><span class="o">,</span> <span class="n">n</span><span class="o">-</span><span class="mi">1</span><span class="o">,</span> <span class="n">exp</span><span class="o">)){</span>
+                    <span class="k">return</span> <span class="kc">true</span><span class="o">;</span>
+                <span class="o">}</span>
+                <span class="c1">//②想乘判断</span>
+                <span class="n">A</span><span class="o">[</span><span class="n">i</span><span class="o">]</span> <span class="o">=</span> <span class="n">a</span> <span class="o">*</span> <span class="n">b</span><span class="o">;</span>
+                <span class="n">exp</span><span class="o">[</span><span class="n">i</span><span class="o">]</span> <span class="o">=</span> <span class="s">&quot;(&quot;</span> <span class="o">+</span> <span class="n">expa</span> <span class="o">+</span> <span class="s">&quot; * &quot;</span> <span class="o">+</span> <span class="n">expb</span> <span class="o">+</span> <span class="s">&quot;)&quot;</span><span class="o">;</span>
+                <span class="k">if</span><span class="o">(</span><span class="n">twentyFour</span><span class="o">(</span><span class="n">A</span><span class="o">,</span> <span class="n">n</span><span class="o">-</span><span class="mi">1</span><span class="o">,</span><span class="n">exp</span><span class="o">)){</span>
+                    <span class="k">return</span> <span class="kc">true</span><span class="o">;</span>
+                <span class="o">}</span>
+                <span class="c1">//③a-b</span>
+                <span class="n">A</span><span class="o">[</span><span class="n">i</span><span class="o">]</span> <span class="o">=</span> <span class="n">a</span> <span class="o">-</span> <span class="n">b</span><span class="o">;</span>
+                <span class="n">exp</span><span class="o">[</span><span class="n">i</span><span class="o">]</span> <span class="o">=</span> <span class="s">&quot;(&quot;</span> <span class="o">+</span> <span class="n">expa</span> <span class="o">+</span> <span class="s">&quot; - &quot;</span> <span class="o">+</span> <span class="n">expb</span> <span class="o">+</span> <span class="s">&quot;)&quot;</span><span class="o">;</span>
+                <span class="k">if</span><span class="o">(</span><span class="n">twentyFour</span><span class="o">(</span><span class="n">A</span><span class="o">,</span> <span class="n">n</span><span class="o">-</span><span class="mi">1</span><span class="o">,</span> <span class="n">exp</span><span class="o">)){</span>
+                    <span class="k">return</span> <span class="kc">true</span><span class="o">;</span>
+                <span class="o">}</span>
+                <span class="c1">//④b-a</span>
+                <span class="n">A</span><span class="o">[</span><span class="n">i</span><span class="o">]</span> <span class="o">=</span> <span class="n">b</span> <span class="o">-</span> <span class="n">a</span><span class="o">;</span>
+                <span class="n">exp</span><span class="o">[</span><span class="n">i</span><span class="o">]</span> <span class="o">=</span> <span class="s">&quot;(&quot;</span> <span class="o">+</span> <span class="n">expb</span> <span class="o">+</span> <span class="s">&quot; * &quot;</span> <span class="o">+</span> <span class="n">expa</span> <span class="o">+</span> <span class="s">&quot;)&quot;</span><span class="o">;</span>
+                <span class="k">if</span><span class="o">(</span><span class="n">twentyFour</span><span class="o">(</span><span class="n">A</span><span class="o">,</span> <span class="n">n</span><span class="o">-</span><span class="mi">1</span><span class="o">,</span><span class="n">exp</span><span class="o">)){</span>
+                    <span class="k">return</span> <span class="kc">true</span><span class="o">;</span>
+                <span class="o">}</span>
+                <span class="c1">//⑤a / b</span>
+                <span class="k">if</span><span class="o">(</span><span class="n">b</span> <span class="o">!=</span> <span class="mf">0.0</span><span class="o">){</span>
+                    <span class="n">A</span><span class="o">[</span><span class="n">i</span><span class="o">]</span> <span class="o">=</span> <span class="n">a</span> <span class="o">/</span> <span class="n">b</span><span class="o">;</span>
+                    <span class="n">exp</span><span class="o">[</span><span class="n">i</span><span class="o">]</span> <span class="o">=</span> <span class="s">&quot;(&quot;</span> <span class="o">+</span> <span class="n">expa</span> <span class="o">+</span> <span class="s">&quot; / &quot;</span> <span class="o">+</span> <span class="n">expb</span> <span class="o">+</span> <span class="s">&quot;)&quot;</span><span class="o">;</span>
+                    <span class="k">if</span><span class="o">(</span><span class="n">twentyFour</span><span class="o">(</span><span class="n">A</span><span class="o">,</span> <span class="n">n</span><span class="o">-</span><span class="mi">1</span><span class="o">,</span> <span class="n">exp</span><span class="o">)){</span>
+                        <span class="k">return</span> <span class="kc">true</span><span class="o">;</span>
+                    <span class="o">}</span>
+                <span class="o">}</span>
+                <span class="c1">//⑥ b / a</span>
+                <span class="k">if</span><span class="o">(</span><span class="n">a</span> <span class="o">!=</span> <span class="mf">0.0</span><span class="o">){</span>
+                    <span class="n">A</span><span class="o">[</span><span class="n">i</span><span class="o">]</span> <span class="o">=</span> <span class="n">b</span> <span class="o">/</span> <span class="n">a</span><span class="o">;</span>
+                    <span class="n">exp</span><span class="o">[</span><span class="n">i</span><span class="o">]</span> <span class="o">=</span> <span class="s">&quot;(&quot;</span> <span class="o">+</span> <span class="n">expb</span> <span class="o">+</span> <span class="s">&quot; / &quot;</span> <span class="o">+</span> <span class="n">expa</span> <span class="o">+</span> <span class="s">&quot;)&quot;</span><span class="o">;</span>
+                    <span class="k">if</span><span class="o">(</span><span class="n">twentyFour</span><span class="o">(</span><span class="n">A</span><span class="o">,</span> <span class="n">n</span><span class="o">-</span><span class="mi">1</span><span class="o">,</span> <span class="n">exp</span><span class="o">)){</span>
+                        <span class="k">return</span> <span class="kc">true</span><span class="o">;</span>
+                    <span class="o">}</span>
+                <span class="o">}</span>
+
+                <span class="c1">//A[i]和A[j]的组合没有结果,继续下一次循环,继续之前,需要恢复现场给下次循环</span>
+                <span class="n">A</span><span class="o">[</span><span class="n">i</span><span class="o">]</span> <span class="o">=</span> <span class="n">a</span><span class="o">;</span>
+                <span class="n">A</span><span class="o">[</span><span class="n">j</span><span class="o">]</span> <span class="o">=</span> <span class="n">b</span><span class="o">;</span>
+                <span class="n">exp</span><span class="o">[</span><span class="n">i</span><span class="o">]</span> <span class="o">=</span> <span class="n">expa</span><span class="o">;</span>
+                <span class="n">exp</span><span class="o">[</span><span class="n">j</span><span class="o">]</span> <span class="o">=</span> <span class="n">expb</span><span class="o">;</span>
+            <span class="o">}</span>
+        <span class="o">}</span>
+        <span class="c1">//所有循环结束没有找到计算方法,返回false</span>
+        <span class="k">return</span> <span class="kc">false</span><span class="o">;</span>
+    <span class="o">}</span>
+
+    <span class="kd">public</span> <span class="kd">static</span> <span class="kt">void</span> <span class="nf">main</span><span class="o">(</span><span class="n">String</span><span class="o">[]</span> <span class="n">args</span><span class="o">)</span> <span class="o">{</span>
+        <span class="c1">// TODO Auto-generated method stub</span>
+        <span class="n">Scanner</span> <span class="n">sc</span> <span class="o">=</span> <span class="k">new</span> <span class="n">Scanner</span><span class="o">(</span><span class="n">System</span><span class="o">.</span><span class="na">in</span><span class="o">);</span>
+        <span class="kt">int</span> <span class="n">n</span> <span class="o">=</span> <span class="n">sc</span><span class="o">.</span><span class="na">nextInt</span><span class="o">();</span>
+        <span class="kt">double</span><span class="o">[]</span> <span class="n">A</span> <span class="o">=</span> <span class="k">new</span> <span class="kt">double</span><span class="o">[</span><span class="n">n</span><span class="o">];</span>
+        <span class="n">String</span><span class="o">[]</span> <span class="n">exp</span> <span class="o">=</span> <span class="k">new</span> <span class="n">String</span><span class="o">[</span><span class="n">n</span><span class="o">];</span>
+        <span class="k">for</span><span class="o">(</span><span class="kt">int</span> <span class="n">i</span> <span class="o">=</span> <span class="mi">0</span><span class="o">;</span> <span class="n">i</span> <span class="o">&lt;</span> <span class="n">n</span><span class="o">;</span> <span class="n">i</span><span class="o">++){</span>
+            <span class="kt">int</span> <span class="n">x</span> <span class="o">=</span> <span class="n">sc</span><span class="o">.</span><span class="na">nextInt</span><span class="o">();</span>
+            <span class="n">A</span><span class="o">[</span><span class="n">i</span><span class="o">]</span> <span class="o">=</span> <span class="n">x</span><span class="o">;</span>
+            <span class="n">exp</span><span class="o">[</span><span class="n">i</span><span class="o">]</span> <span class="o">=</span> <span class="n">String</span><span class="o">.</span><span class="na">valueOf</span><span class="o">(</span><span class="n">x</span><span class="o">);</span>
+        <span class="o">}</span>
+        <span class="k">if</span><span class="o">(</span><span class="n">twentyFour</span><span class="o">(</span><span class="n">A</span><span class="o">,</span> <span class="n">n</span><span class="o">,</span> <span class="n">exp</span><span class="o">)){</span>
+            <span class="n">System</span><span class="o">.</span><span class="na">out</span><span class="o">.</span><span class="na">println</span><span class="o">(</span><span class="n">exp</span><span class="o">[</span><span class="mi">0</span><span class="o">]);</span>
+        <span class="o">}</span><span class="k">else</span> <span class="o">{</span>
+            <span class="n">System</span><span class="o">.</span><span class="na">out</span><span class="o">.</span><span class="na">println</span><span class="o">(</span><span class="s">&quot;NONE&quot;</span><span class="o">);</span>
+        <span class="o">}</span>
+    <span class="o">}</span>
+<span class="o">}</span>
+</pre></div>
+
+
+<blockquote>
+<p>Written with <a href="https://stackedit.io/">StackEdit</a>.</p>
+</blockquote>
+<section>
+<div class="accordion" id="accordion2">
+    <div class="accordion-group">
+        <div class="accordion-heading">
+            <a class="accordion-toggle duoshuo-comment-count" data-toggle="collapse" data-parent="#accordion2"
+                href="http://yinsanwen.github.io/posts/2014/06/13/24dian-jisuan.html#disqus_thread">
+                <span class="ds-thread-count" data-thread-key="posts/2014/06/13/24dian-jisuan.html"></span>
+            </a>
+        </div>
+        <div id="disqus_thread" class="accordion-body collapse">
+            <div class="accordion-inner">
+                <div class="comments">
+<!-- 多说评论框 start -->
+<div class="ds-thread" data-thread-key="posts/2014/06/13/24dian-jisuan.html" data-title="24点算法的JAVA实现" data-url="http://yinsanwen.github.io/posts/2014/06/13/24dian-jisuan.html"></div>    
+<!-- 多说评论框 end -->
+    <!-- 多说公共JS代码 start (一个网页只需插入一次) -->
+    <script type="text/javascript">
+    var duoshuoQuery = {short_name:"sanwenn"};
+    (function() {
+            var ds = document.createElement('script');
+                    ds.type = 'text/javascript';ds.async = true;
+                            ds.src = (document.location.protocol == 'https:' ? 'https:' : 'http:') + '//static.duoshuo.com/embed.js';
+                                    ds.charset = 'UTF-8';
+                                            (document.getElementsByTagName('head')[0] 
+                                                     || document.getElementsByTagName('body')[0]).appendChild(ds);
+                                                })();
+    </script>
+    <!-- 多说公共JS代码 end -->                </div>
+            </div>
+        </div>
+    </div>
+</div>
+</section>
+            <aside>
+            <hr/>
+            <nav>
+            <ul class="articles_timeline">
+ 
+                <li class="previous_article">« <a href="http://yinsanwen.github.io/posts/2014/04/28/knapsack-problem.html" title="Previous: 背包问题——动态规划">背包问题——动态规划</a></li>
+ 
+                <li class="next_article"><a href="http://yinsanwen.github.io/posts/2014/07/21/using-dynamic-programing-in-string.html" title="Next: 动态规划在字符串上的应用">动态规划在字符串上的应用</a> »</li>
+            </ul>
+            </nav>
+            </aside>
+        </div>
+        <section>
+        <div class="span2" style="float:right;font-size:0.9em;">
+ 
+            <h4>Published</h4>
+            <time pubdate="pubdate" datetime="2014-06-13T18:12:00"> 6月 13, 2014</time>
+            <h4>Category</h4>
+            <a class="category-link" href="/categories.html#算法-ref">算法</a> 
+            <h4>Tags</h4>
+            <ul class="list-of-tags tags-in-article"> 
+                <li><a href="/tags.html#递归-穷举-ref">递归 穷举
+                    <span>1</span>
+</a></li>
+            </ul>
+
+        </div>
+        </section>
+</div>
+</article>
+                </div>
+                <div class="span1"></div>
+            </div>
+        </div>
+    </div>
+<footer>
+<div id="footer">
+    <ul class="footer-content">
+        <li class="elegant-power">Powered by <a href="http://getpelican.com/" title="Pelican Home Page">Pelican</a>. Theme: <a href="http://oncrashreboot.com/pelican-elegant" title="Theme Elegant Home Page">Elegant</a> by <a href="http://oncrashreboot.com" title="Talha Mansoor Home Page">Talha Mansoor</a></li>
+    </ul>
+</div>
+</footer>           <script src="http://code.jquery.com/jquery.min.js"></script>
+       <script src="//netdna.bootstrapcdn.com/twitter-bootstrap/2.3.1/js/bootstrap.min.js"></script>
+        <script>
+            function validateForm(query)
+            {
+                return (query.length > 0);
+            }
+        </script>
+
+   <!-- <script type="text/javascript">
+var duoshuoQuery = {short_name:"sanween"};
+duoshuoQuery.threads = posts/2014/06/13/24dian-jisuan.html
+
+
+    (function() {
+     $.ajax({
+        url: "http://api.duoshuo.com/threads/counts.json",
+        data: duoshuoQuery,
+        success: function(data){
+            
+        },
+       dataType:json  
+     });
+            })();
+    </script>
+-->
+   <!--
+    -->
+    </body>
+</html>
